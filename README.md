@@ -28,7 +28,7 @@ Ghostink doesn't just "write in the style of." It extracts a detailed **Style Sp
 - **Three-layer style spec**: Voice core (portable) → Domain rules (topic-specific) → Platform formatting (channel-specific)
 - **Guided creation workflow**: From rough idea to polished article through structured steps with human checkpoints
 - **De-AI review**: 9-rule audit that catches the subtle patterns making AI text feel "off" — sentence pattern repetition, information density padding, generic metaphors, emotional flatlines, and more. This is Ghostink's signature feature
-- **Auto illustration**: Analyze article structure, generate image prompts, and call configurable image APIs (GPT, NanoBanana, Seedance, etc.). Integrates with baoyu-skills if installed
+- **Auto illustration**: Analyze article structure, generate image prompts, and delegate to [baoyu-imagine](https://github.com/JimLiu/baoyu-skills) for image generation (9 providers supported). Works in prompt-only mode if no image tool is installed
 - **Style audit**: Automated compliance checking against your spec
 - **Living author profile**: Background knowledge base that grows with each writing session
 - **Multi-platform output**: Format for WeChat, X/Twitter, threads, or plain markdown
@@ -131,6 +131,57 @@ Most AI writing tools try to be everything to everyone. Ghostink takes the oppos
 
 - [Claude Code](https://claude.ai/claude-code) CLI or desktop app
 - 20+ reference articles for style initialization
+
+## Illustration Setup (Optional)
+
+Ghostink's `/illustrate` command analyzes your article and generates image prompts. The actual image generation is handled by external tools. Ghostink auto-detects what's available:
+
+| Priority | Runtime | Providers | Setup |
+|----------|---------|-----------|-------|
+| 1 (recommended) | [baoyu-imagine](https://github.com/JimLiu/baoyu-skills) | OpenAI, Google, Replicate, DashScope, MiniMax, Jimeng, Seedream + more | See below |
+| 2 | MCP image tools | Depends on your MCP config | Configure in Claude Code settings |
+| 3 (fallback) | Prompt-only | N/A | No setup needed — prompts saved for manual use |
+
+### Setting up baoyu-imagine
+
+1. **Install baoyu-skills** (includes baoyu-imagine and many other useful skills):
+
+```bash
+git clone https://github.com/JimLiu/baoyu-skills.git ~/.claude/skills/baoyu-skills
+cd ~/.claude/skills/baoyu-skills && ./setup
+```
+
+2. **Configure your image API key** (pick one provider):
+
+```bash
+# OpenAI (DALL-E, gpt-image-1.5)
+export OPENAI_API_KEY=sk-xxx
+
+# Google (Gemini, Imagen)
+export GOOGLE_API_KEY=xxx
+
+# Replicate (NanoBanana, SDXL, etc.)
+export REPLICATE_API_TOKEN=xxx
+
+# Alibaba DashScope
+export DASHSCOPE_API_KEY=xxx
+```
+
+Add the export to your `~/.zshrc` or `~/.bashrc` to persist across sessions.
+
+3. **Test it works**:
+
+```bash
+bun ~/.claude/skills/baoyu-skills/skills/baoyu-imagine/scripts/main.ts \
+  --prompt "A minimal illustration of a writing desk" \
+  --image /tmp/test.png --quality 2k
+```
+
+For advanced configuration (default provider, batch limits, custom models), create `~/.baoyu-skills/baoyu-imagine/EXTEND.md` — see [baoyu-imagine docs](https://github.com/JimLiu/baoyu-skills) for the full YAML schema.
+
+### Without baoyu-imagine
+
+If you don't install baoyu-imagine, `/ghostink illustrate` still works — it generates prompt files at `studio/drafts/imgs/prompts/` that you can copy into any image tool (Midjourney, DALL-E web UI, ComfyUI, etc.).
 
 ## License
 
