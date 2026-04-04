@@ -106,6 +106,28 @@ If the user approves the draft → proceed to Step 6.
 
 Multiple revision rounds are normal. Loop Steps 4-5 until the user is satisfied.
 
+## Step 5.5: De-AI Review
+
+After the draft passes style review and user revisions, run the de-AI audit automatically. Load the full rulebook from `commands/deai.md` and execute all 9 rules.
+
+If the de-AI score is **below 70**: flag the issues and offer to auto-fix before proceeding.
+If the score is **70-85**: show the report, offer optional fixes, let the user decide.
+If the score is **above 85**: briefly note the score and proceed.
+
+This is a non-skippable step. Every draft must pass through de-AI review.
+
+## Step 5.6: Illustrate (Optional)
+
+After de-AI review, ask:
+
+> Want to add illustrations to this article? (y/n)
+
+If yes, run the illustration workflow from `commands/illustrate.md` on the current draft.
+
+If `studio/illustrate_config.md` doesn't exist, guide the user through first-time setup (choose provider, model, API key).
+
+If the user declines, skip to Step 6.
+
 ## Step 6: Format & Output
 
 Ask the user:

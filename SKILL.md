@@ -10,6 +10,8 @@ Ghostink separates **what you think** (human) from **how it's written** (AI). Yo
 |---------|-------------|
 | `/ghostink write` | Create an article through a guided multi-step workflow |
 | `/ghostink check` | Audit any text against your style spec |
+| `/ghostink deai` | Remove AI-flavor — Ghostink's signature de-AI review |
+| `/ghostink illustrate` | Generate article illustrations with configurable image APIs |
 | `/ghostink style-init` | Initialize a style spec from reference articles |
 | `/ghostink style-evolve` | Update your style spec based on feedback |
 
@@ -63,7 +65,9 @@ If `studio/` doesn't exist, Ghostink will guide you through setup.
 Each command loads its detailed instructions from the `commands/` directory within this skill. When a command is invoked, read the corresponding file:
 
 - `/ghostink write` → read `commands/write.md`
-- `/ghostink check` → read `commands/check.md`  
+- `/ghostink check` → read `commands/check.md`
+- `/ghostink deai` → read `commands/deai.md`
+- `/ghostink illustrate` → read `commands/illustrate.md`
 - `/ghostink style-init` → read `commands/style-init.md`
 - `/ghostink style-evolve` → read `commands/style-evolve.md`
 

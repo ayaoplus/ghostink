@@ -27,7 +27,9 @@ Ghostink doesn't just "write in the style of." It extracts a detailed **Style Sp
 - **Multi-round style learning**: Iteratively analyzes 20-200+ articles to extract writing patterns with increasing precision
 - **Three-layer style spec**: Voice core (portable) → Domain rules (topic-specific) → Platform formatting (channel-specific)
 - **Guided creation workflow**: From rough idea to polished article through structured steps with human checkpoints
-- **Style audit**: Automated compliance checking against your spec — catches AI-isms before you publish
+- **De-AI review**: 9-rule audit that catches the subtle patterns making AI text feel "off" — sentence pattern repetition, information density padding, generic metaphors, emotional flatlines, and more. This is Ghostink's signature feature
+- **Auto illustration**: Analyze article structure, generate image prompts, and call configurable image APIs (GPT, NanoBanana, Seedance, etc.). Integrates with baoyu-skills if installed
+- **Style audit**: Automated compliance checking against your spec
 - **Living author profile**: Background knowledge base that grows with each writing session
 - **Multi-platform output**: Format for WeChat, X/Twitter, threads, or plain markdown
 
@@ -81,8 +83,10 @@ Or pivot your style to a new domain:
 
 | Command | What it does |
 |---------|-------------|
-| `/ghostink write` | Full creation workflow: idea → outline → draft → audit → format |
+| `/ghostink write` | Full creation workflow: idea → outline → draft → de-AI → illustrate → format |
 | `/ghostink check [file]` | Run style audit on any text, output compliance report |
+| `/ghostink deai [file]` | Run the 9-rule de-AI review on any text |
+| `/ghostink illustrate [file]` | Generate and insert illustrations for an article |
 | `/ghostink style-init [dir]` | Generate a Style Spec from reference articles |
 | `/ghostink style-evolve` | Update your spec based on feedback or new direction |
 
