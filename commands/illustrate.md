@@ -1,6 +1,6 @@
 # /ghostink illustrate
 
-Generate illustrations for an article. Can run as a standalone command on any article, or as part of the `/ghostink write` workflow.
+Generate illustrations for an article. Ghostink handles the creative part (analyzing where images go, writing prompts); image generation is delegated to the best available tool in the user's environment.
 
 ## Usage
 
@@ -9,31 +9,79 @@ Generate illustrations for an article. Can run as a standalone command on any ar
 /ghostink illustrate                   ← will ask for input
 ```
 
-## Configuration
+## Image Generation: Runtime Detection
 
-On first run, create `studio/illustrate_config.md` if it doesn't exist:
+Ghostink does NOT include image generation code. On every run, detect what's available and use the best option:
 
-```yaml
-# Image Generation Settings
-provider: gpt                    # gpt | nanobanana | seedance | replicate | dashscope | custom
-model: gpt-image-1               # model name (provider-specific)
-api_key_env: OPENAI_API_KEY      # environment variable name holding the API key
-aspect_ratio: 16:9               # default aspect ratio
-quality: standard                # standard | hd | 2k
-output_dir: imgs                 # subdirectory relative to article for images
-watermark:
-  enabled: false
-  content: ""                    # @username or custom text
+### Priority 1: baoyu-imagine CLI (recommended)
 
-# Style Preferences
-default_style: minimal           # minimal | warm | notion | blueprint | editorial | watercolor | screen-print
-language: auto                   # zh | en | auto (match article language)
+Check if available:
+```bash
+bun ~/.claude/plugins/cache/baoyu-skills/baoyu-skills/*/skills/baoyu-imagine/scripts/main.ts --help 2>/dev/null
 ```
 
-If baoyu-skills is installed (check for `~/.claude/skills/baoyu-skills/`), inform the user:
-> "baoyu-article-illustrator is available. Want to use it instead? It has more advanced features."
+Or check if baoyu-skills is installed as a Claude skill (look for `baoyu-imagine` in available skills list).
 
-If the user agrees, delegate to baoyu-article-illustrator and skip the rest of this workflow.
+**Why this is preferred:** 9 providers (OpenAI, Google, Replicate, DashScope, MiniMax, Jimeng, Seedream, etc.), batch mode, reference images, rate limiting — all maintained by the baoyu-skills project.
+
+If available, generate images via:
+```bash
+# Single image
+bun [baoyu-imagine-path]/scripts/main.ts \
+  --promptfiles studio/drafts/imgs/prompts/01-type-slug.md \
+  --image studio/drafts/imgs/01-type-slug.png \
+  --provider [provider] --ar [ratio] --quality [quality]
+
+# Batch mode (multiple images)
+bun [baoyu-imagine-path]/scripts/main.ts \
+  --batchfile studio/drafts/imgs/batch.json
+```
+
+For batch mode, generate a `batch.json` file:
+```json
+{
+  "jobs": 4,
+  "tasks": [
+    {
+      "id": "01-infographic-concept",
+      "promptFiles": ["prompts/01-infographic-concept.md"],
+      "image": "01-infographic-concept.png",
+      "ar": "16:9",
+      "quality": "2k"
+    }
+  ]
+}
+```
+
+**API key setup:** baoyu-imagine manages its own keys via environment variables or `~/.baoyu-skills/baoyu-imagine/EXTEND.md`. If no keys are configured, tell the user:
+
+> To set up image generation, configure your API key:
+> - OpenAI: `export OPENAI_API_KEY=sk-xxx`
+> - Google: `export GOOGLE_API_KEY=xxx`
+> - Replicate: `export REPLICATE_API_TOKEN=xxx`
+> - See baoyu-imagine docs for all providers
+
+### Priority 2: MCP Image Tools
+
+Check if image generation MCP tools are available in the current session (e.g., OpenAI image generation MCP, or any tool with "image" + "generate" in its description).
+
+If found, use them directly — Claude can call MCP tools natively.
+
+### Priority 3: Prompt-Only Mode (fallback)
+
+If no image generation tool is available:
+
+1. Still run Steps 1-3 (analyze article, plan, generate prompts)
+2. Save all prompts to `studio/drafts/imgs/prompts/`
+3. Tell the user:
+
+> Image prompts saved to `studio/drafts/imgs/prompts/`. No image generation tool detected.
+>
+> To generate images, either:
+> - Install baoyu-skills: `git clone https://github.com/JimLiu/baoyu-skills ~/.claude/skills/baoyu-skills`
+> - Or copy the prompts to your preferred image generation tool (Midjourney, DALL-E web, etc.)
+
+---
 
 ## Process
 
@@ -41,114 +89,106 @@ If the user agrees, delegate to baoyu-article-illustrator and skip the rest of t
 
 Read the article and identify illustration opportunities:
 
-1. **Find core arguments** (2-5 main points that benefit from visualization)
-2. **Find abstract concepts** that are hard to grasp from text alone
-3. **Find data comparisons** that could be visualized
-4. **Find narrative moments** that have strong visual potential
+1. **Core arguments** (2-5 main points that benefit from visualization)
+2. **Abstract concepts** that are hard to grasp from text alone
+3. **Data comparisons** that could be visualized
+4. **Narrative moments** with strong visual potential
 
-**Skip illustrating:**
-- Metaphors literally (if the article says "like cutting a watermelon," don't draw a watermelon)
+**Do NOT illustrate:**
+- Metaphors literally — if the article says "like cutting a watermelon," visualize the underlying concept, not a watermelon
 - Decorative/generic scenes with no informational value
-- Points that are already clear from text
+- Points already clear from text
 
 ### Step 2: Generate Illustration Plan
 
-Output a plan to the user:
+Output a plan:
 
 ```
 Illustration Plan
 =================
 Article: [title]
+Runtime: [baoyu-imagine | MCP tool | prompt-only]
 Images: [N] recommended
 
 1. [Position: after paragraph 3]
    Purpose: Visualize the comparison between X and Y
-   Type: comparison
+   Type: comparison | infographic | scene | flowchart | framework | timeline
    Key content: [specific data/concepts from the article]
 
 2. [Position: after paragraph 7]
    Purpose: Show the workflow of Z
    Type: flowchart
-   Key content: [specific steps from the article]
-
-...
+   Key content: [specific steps]
 ```
 
-Wait for user approval. They may:
-- Remove items ("skip #2")
-- Add positions ("also add one after paragraph 5")
-- Change types ("make #1 a scene instead")
+Wait for user approval. They may remove, add, or change items.
 
 ### Step 3: Generate Prompts
 
-For each approved illustration, generate an image prompt following these principles:
+For each approved illustration, write a prompt file to `studio/drafts/imgs/prompts/NN-type-slug.md`:
 
-**Prompt structure:**
-```
-[Layout description]: [composition details]
-[Content zones]: [specific elements from the article — real data, real terms, not placeholders]
-[Color palette]: [2-3 colors with hex codes, semantically meaningful]
-[Style]: [matching the configured default_style]
-[Aspect ratio]: [from config]
+```markdown
+---
+illustration_id: 01-comparison-concept
+type: comparison
+style: minimal
+aspect_ratio: "16:9"
+---
+
+[Prompt body here]
 ```
 
 **Prompt quality rules:**
-- Use ACTUAL content from the article: real numbers, real terms, real quotes
-- Describe composition spatially: "left side shows X, right side shows Y, connected by Z"
-- Keep layouts clean: generous whitespace, no clutter, no complex backgrounds
-- If characters appear: simplified cartoon silhouettes, NOT photorealistic
-- Text in images: large, prominent, minimal, keyword-focused
-- Match the article's language
+- **Use ACTUAL article content**: real numbers, real terms, real quotes — not generic placeholders
+- **Describe composition spatially**: "left side shows X, right side shows Y, connected by Z"
+- **Clean layouts**: generous whitespace, no clutter, solid or subtle gradient backgrounds
+- **Characters**: simplified cartoon silhouettes, NOT photorealistic
+- **Text in images**: large, prominent, minimal keywords only
+- **Language**: match the article's language
 
-Save prompts to `studio/drafts/imgs/prompts/NN-type-slug.md`
+**Type-specific structure:**
+
+| Type | Layout | Key Elements |
+|------|--------|-------------|
+| infographic | Grid/radial/hierarchical | Zones, labels with real data, color-coded sections |
+| comparison | Side-by-side with divider | Two contrasting elements, visual separation |
+| flowchart | Sequential with arrows | Steps, decision points, connections |
+| scene | Single focal point | Atmosphere, mood, color temperature |
+| framework | Hierarchical/matrix | Concept nodes, relationships |
+| timeline | Chronological | Events with visual markers |
 
 ### Step 4: Generate Images
 
-For each prompt:
-1. Read the provider config from `studio/illustrate_config.md`
-2. Call the appropriate image generation API:
+Based on detected runtime (see Runtime Detection above):
 
-**GPT (OpenAI):**
-```bash
-# Use the images generation endpoint via the API
-```
-Note: For OpenAI image generation, use the available MCP tools or API calls.
+- **baoyu-imagine**: Build batch.json → execute batch command
+- **MCP tools**: Call the tool for each prompt sequentially
+- **Prompt-only**: Skip this step, notify user
 
-**NanoBanana / Replicate / Others:**
-If baoyu-imagine CLI is available, use it:
-```bash
-baoyu-imagine --provider [provider] --model [model] --prompt-file [prompt-file] --output [output-path] --ar [aspect-ratio]
-```
+Save images to `studio/drafts/imgs/NN-type-slug.png`
 
-If baoyu-imagine is not available, inform the user:
-> "To generate images, you need either an image generation MCP tool or baoyu-imagine CLI. You can also copy the prompts from `studio/drafts/imgs/prompts/` and generate images manually."
-
-3. Save generated images to `studio/drafts/imgs/NN-type-slug.png`
+If any image fails, continue with the rest. Report failures at the end.
 
 ### Step 5: Insert into Article
 
-After all images are generated:
 1. Insert markdown image tags at the planned positions
 2. Use relative paths: `![description](imgs/NN-type-slug.png)`
-3. Image description (alt text) should be a brief, meaningful description — not the full prompt
+3. Alt text should be a brief meaningful description, NOT the full prompt
+4. For prompt-only mode, insert placeholder tags: `![description](imgs/NN-type-slug.png "PENDING — see prompts/")`
 
-Show the user the final article with images inserted.
+Show the final article with images inserted.
 
 ## Integration with /ghostink write
 
-When running as part of the write workflow, `/ghostink illustrate` runs between Step 5 (Revise) and Step 6 (Format):
+Runs as Step 5.6 in the write workflow (after de-AI review, before formatting):
 
 ```
-... → Step 5: Revise → Step 5.5: Illustrate (optional) → Step 6: Format → ...
+... → De-AI Review → Illustrate (optional) → Format → ...
 ```
-
-After the draft is finalized, ask:
-> "Want to add illustrations? (/ghostink illustrate)"
-
-If yes, run the illustration workflow on the current draft.
 
 ## Notes
 
 - Image generation costs money. Always show the plan and get approval before generating.
-- If generation fails for one image, continue with the rest and report failures at the end.
-- Prompts are always saved regardless of whether generation succeeds — user can re-generate later.
+- Prompts are always saved regardless of generation success — user can re-generate later.
+- When using baoyu-imagine batch mode, default to 4 parallel workers.
+- Respect rate limits: baoyu-imagine handles this internally; for MCP tools, add 2s delay between calls.
