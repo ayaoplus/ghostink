@@ -6,6 +6,89 @@
 
 ---
 
+## Layer 0: Author DNA
+
+> This layer captures WHY readers follow this author — not how they write, but what makes them irreplaceable. Layer 0 is the soul; Layers 1-3 are the body. Without Layer 0, you can imitate the surface but never reproduce the gravity.
+
+### 0.1 Reader Value — Why People Follow
+
+**Core value proposition:** [What does the reader get that they can't get elsewhere? Not "good writing" — the specific, irreplaceable thing.]
+
+**Value breakdown:**
+
+| Value Type | What Specifically | Evidence |
+|------------|-------------------|----------|
+| [e.g., Information asymmetry] | [description] | [quote or pattern from articles] |
+| [e.g., Emotional anchoring] | [description] | [quote or pattern] |
+| [e.g., Entertainment] | [description] | [quote or pattern] |
+
+**The "unsubscribe test":** [If this author stopped writing tomorrow, what would readers miss most? This is the single most important sentence in the entire spec.]
+
+### 0.2 Author Positioning — The Relationship
+
+**Role:** [Teacher / Friend / Fellow traveler / Provocateur / Curator / Coach / Confessor / ... — pick one primary, note secondary]
+
+**Power dynamic with readers:** [Above / Equal / Deliberately below? How is this expressed in practice?]
+
+**Persona paradox:** [Most compelling authors carry a tension — e.g., "expert who admits ignorance," "wealthy person who self-deprecates," "authority who invites disagreement." What's the paradox here?]
+
+**Self-positioning signals:** [Specific phrases or behaviors that establish the author's role — not vocabulary style, but identity markers]
+
+### 0.3 Narrative Engine — How Arguments Are Built
+
+Not sentence-level craft, but the macro logic of persuasion. How does this author make you believe them?
+
+**Primary persuasion stack** (rank by dominance):
+
+1. [ ] Personal experience — "I tried this and..."
+2. [ ] Data and specifics — "The number is 32%, not 'a lot'..."
+3. [ ] Emotional resonance — "You've felt this too..."
+4. [ ] Authority from track record — "I've been doing this for N years..."
+5. [ ] Logical reasoning — "If A then B..."
+
+**Conviction pattern:** [Does the author state conclusions upfront then defend? Build evidence then reveal? Let readers draw their own conclusions? Something else?]
+
+**How wrong predictions are handled:** [Delete and pretend? Acknowledge and move on? Deep post-mortem? This is a critical trust differentiator.]
+
+**Role of stories:** [Are stories decoration on top of arguments, or ARE stories the argument? How is knowledge embedded in narrative?]
+
+### 0.4 Core Beliefs — The Worldview
+
+Recurring convictions that color everything. These are not stated once — they surface repeatedly across many articles, often implicitly. They are the "why" behind the author's judgments.
+
+1. [Belief statement] — shows up as: [how it manifests in writing]
+2. [Belief statement] — shows up as: [how it manifests]
+3. ...
+
+**When beliefs conflict, which wins?** [e.g., "pragmatism beats idealism," "honesty beats comfort," "loyalty beats optimization"]
+
+**Blind spots or consistent biases:** [What does this author systematically over-weight or under-weight?]
+
+### 0.5 Trust Mechanics — Why Readers Believe
+
+Not abstract qualities ("authentic," "honest") — specific, observable behaviors that earn credibility.
+
+| Behavior | How It Builds Trust | Example |
+|----------|-------------------|---------|
+| [e.g., Shows losses publicly] | [Proves skin in the game] | "[quote]" |
+| [e.g., Admits uncertainty before giving direction] | [Signals honesty, not just confidence] | "[quote]" |
+
+**Vulnerability pattern:** [How and when does the author show weakness? Frequency? What topics trigger it? This is often the strongest trust signal — get it wrong and the whole voice feels performed.]
+
+**What would break reader trust instantly?** [The unspoken rules — e.g., "secretly shilling a position," "suddenly using corporate-speak," "giving empty reassurance during a crash"]
+
+### 0.6 Emotional Contract — The Unspoken Promise
+
+**What readers come for:** [The emotional experience readers expect when they open this author's article — be specific, not "good content"]
+
+**What the author never does:** [Emotional boundaries — lines the author won't cross even under pressure]
+
+**Emotional anchor role:** [In what situation do readers turn to this author? When markets crash? When confused? When bored? When angry? The author serves as a _____ during _____.]
+
+**Emotional range and limits:** [Where on the spectrum does this author operate? Full range from rage to tenderness? Or constrained to a narrower band?]
+
+---
+
 ## Layer 1: Voice Core
 
 ### 1.1 Persona

@@ -12,20 +12,24 @@ Ghostink separates **what you think** (human) from **how it's written** (AI). Yo
 | `/ghostink check` | Audit any text against your style spec |
 | `/ghostink deai` | Remove AI-flavor — Ghostink's signature de-AI review |
 | `/ghostink illustrate` | Generate article illustrations with configurable image APIs |
-| `/ghostink style-init` | Initialize a style spec from reference articles |
+| `/ghostink style-init` | Analyze a reference author — extract their DNA + style into a spec |
+| `/ghostink style-forge` | Forge YOUR spec from analyzed references + your own identity |
 | `/ghostink style-evolve` | Update your style spec based on feedback |
 
 ## How It Works
 
 ```
-You write ideas ──→ Ghostink structures & styles ──→ Article in your voice
-                         ↑                              ↓
-                    style_spec.md              feedback → evolve spec
+Analyze references ──→ Forge YOUR spec ──→ Write in your voice
+   (style-init)         (style-forge)          (write)
+        ↑                     ↑                    ↓
+  reference authors    your identity +      feedback → evolve spec
+                       borrowed traits
 ```
 
 ### Core Concepts
 
-**Style Spec** (`style_spec.md`): A detailed rulebook extracted from your writing — sentence rhythm, vocabulary fingerprint, emotional patterns, structural templates, and a prohibition list. It has three layers:
+**Style Spec** (`style_spec.md`): A detailed rulebook that captures both WHO you are and HOW you write. It has four layers:
+- **Layer 0 — Author DNA**: Why readers follow, author positioning, narrative engine, core beliefs, trust mechanics, emotional contract (the soul — portable across domains)
 - **Layer 1 — Voice Core**: Sentence patterns, tone, humor style, prohibitions (portable across topics)
 - **Layer 2 — Domain Adaptation**: Terminology handling, article types, data presentation (topic-specific)
 - **Layer 3 — Platform Adaptation**: Formatting rules per publishing channel (platform-specific)
@@ -41,13 +45,19 @@ Ghostink looks for files in a `studio/` directory relative to your project root:
 ```
 your-project/
   └── studio/
-      ├── style_spec.md              ← your style rulebook
+      ├── style_spec.md              ← YOUR style rulebook (output of style-forge)
       ├── author_profile/
       │   ├── identity.md            ← who you are
       │   ├── experiences.md         ← life stories (numbered entries)
       │   ├── opinions.md            ← positions you've publicly taken
       │   └── references.md          ← people, books, games you often cite
-      ├── reference_articles/        ← source articles for style learning
+      ├── references/                ← analyzed reference authors
+      │   ├── catblade/
+      │   │   ├── style_spec.md      ← catblade's analyzed spec
+      │   │   └── articles/          ← catblade's source articles
+      │   └── [another_author]/
+      │       ├── style_spec.md
+      │       └── articles/
       └── drafts/                    ← output directory
 ```
 
@@ -55,10 +65,12 @@ If `studio/` doesn't exist, Ghostink will guide you through setup.
 
 ## First-Time Setup
 
-1. Create a `studio/reference_articles/` directory and put 20+ articles that represent your desired writing style
-2. Run `/ghostink style-init` to generate your style spec
-3. Fill in `author_profile/identity.md` with basic info about yourself
+1. Create `studio/references/[author]/articles/` for each reference author, put 20+ of their articles in each
+2. Run `/ghostink style-init [author]` for each reference to analyze their DNA + style
+3. Run `/ghostink style-forge` to create YOUR spec from references + your own identity
 4. Start writing with `/ghostink write`
+
+For single-reference use, you can skip step 3 — `style-init` can write directly to `studio/style_spec.md` if you're emulating rather than forging.
 
 ## Command Details
 
@@ -69,6 +81,7 @@ Each command loads its detailed instructions from the `commands/` directory with
 - `/ghostink deai` → read `commands/deai.md`
 - `/ghostink illustrate` → read `commands/illustrate.md`
 - `/ghostink style-init` → read `commands/style-init.md`
+- `/ghostink style-forge` → read `commands/style-forge.md`
 - `/ghostink style-evolve` → read `commands/style-evolve.md`
 
 ## Language
