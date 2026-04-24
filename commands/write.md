@@ -10,9 +10,41 @@ Before starting, verify these files exist:
 
 ## Step 1: Define Topic & Type
 
-Start by asking the user:
+### Step 1a: Check for brainstorm artifacts (before asking anything)
+
+Silently scan `studio/drafts/_brainstorm/` for `.md` files. If the directory exists and contains files:
+
+1. List the most recent 3 files (by filename date, newest first)
+2. For each, read the YAML frontmatter to extract `topic`, `article_type`, and `status`
+3. Present them via AskUserQuestion:
+
+   > 我看到你之前跑过 /brainstorm。要不要基于其中一个直接写稿？
+   >
+   > - A) 基于最近的：`YYYY-MM-DD_<slug>` — <topic> · <article_type>
+   > - B) 基于上一个：`YYYY-MM-DD_<slug>` — <topic> · <article_type>
+   > - C) 基于更早的：`YYYY-MM-DD_<slug>` — <topic> · <article_type>
+   > - D) 不基于，从零开始（走完整流程）
+   >
+   > 选 A/B/C 会跳过主题讨论，直接进入大纲确认。
+
+4. If user picks A/B/C (brainstorm-based path):
+   - Read the selected file in full
+   - Parse sections: `核心判断`、`差异化切入`、`可用素材`、`大纲`
+   - Echo back in 2-3 sentences: "你在 brainstorm 里定的是 [article_type]，核心判断是 [核心判断]，基于 [素材列表]。我直接按那份大纲走。"
+   - **Skip to Step 2's outline-presentation phase** — use the brainstorm file's 大纲 section as the outline, DO NOT regenerate. Ask only: "这个大纲直接用，还是有要改的？"
+   - If user confirms → proceed to Step 3 (Write Draft) using article_type from frontmatter
+   - If user wants changes → revise the outline in place, re-present, then Step 3
+
+5. If user picks D (or the directory doesn't exist / is empty):
+   - Continue to Step 1b below (the original flow)
+
+### Step 1b: Ask for topic (when no brainstorm basis)
+
+Ask the user:
 
 > What do you want to write about? And how developed is your idea — do you have a clear outline already, or just a rough direction?
+>
+> （如果想法还模糊，建议先跑 /ghostink brainstorm 做一轮结构化讨论。）
 
 ### Mode A: Structured Input (user has a clear outline)
 

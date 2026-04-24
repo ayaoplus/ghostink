@@ -16,6 +16,7 @@ Ghostink separates **what you think** (human) from **how it's written** (AI). Yo
 | `/ghostink style-init` | Analyze a reference author — extract their DNA + style into a spec |
 | `/ghostink style-forge` | Forge YOUR spec from analyzed references + your own identity |
 | `/ghostink style-evolve` | Update your style spec based on feedback |
+| `/ghostink profile-init` | Layered interactive setup of `author_profile/` — identity, experiences, opinions, references |
 
 ## How It Works
 
@@ -85,6 +86,7 @@ Each command loads its detailed instructions from the `commands/` directory with
 - `/ghostink style-init` → read `commands/style-init.md`
 - `/ghostink style-forge` → read `commands/style-forge.md`
 - `/ghostink style-evolve` → read `commands/style-evolve.md`
+- `/ghostink profile-init` → read `commands/profile-init.md`
 
 ## Language
 
