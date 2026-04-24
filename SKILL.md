@@ -8,6 +8,7 @@ Ghostink separates **what you think** (human) from **how it's written** (AI). Yo
 
 | Command | Description |
 |---------|-------------|
+| `/ghostink brainstorm` | Interactive thinking partner — turn a rough idea into a structured outline through dynamic Socratic dialogue |
 | `/ghostink write` | Create an article through a guided multi-step workflow |
 | `/ghostink check` | Audit any text against your style spec |
 | `/ghostink deai` | Remove AI-flavor — Ghostink's signature de-AI review |
@@ -76,6 +77,7 @@ For single-reference use, you can skip step 3 — `style-init` can write directl
 
 Each command loads its detailed instructions from the `commands/` directory within this skill. When a command is invoked, read the corresponding file:
 
+- `/ghostink brainstorm` → read `commands/brainstorm.md`
 - `/ghostink write` → read `commands/write.md`
 - `/ghostink check` → read `commands/check.md`
 - `/ghostink deai` → read `commands/deai.md`
