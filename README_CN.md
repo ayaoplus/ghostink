@@ -92,20 +92,20 @@ Ghostink 会分多轮分析你的文章并生成风格规格书。大约需要 1
 
 ## 目录结构
 
-Ghostink 在你项目的 `studio/` 目录下读写文件：
+Ghostink 在一个 **studio root** 目录下读写所有文件。如何确定 studio root，参见 SKILL.md → "Studio Discovery Rules"（环境变量、cwd、向上查找）。
 
 ```
-你的项目/
-  └── studio/
-      ├── style_spec.md              ← 风格规格书（自动生成）
-      ├── style_init_log.md          ← 风格分析日志
-      ├── author_profile/
-      │   ├── identity.md            ← 你是谁
-      │   ├── experiences.md         ← 个人经历（随写作自然增长）
-      │   ├── opinions.md            ← 你的公开立场
-      │   └── references.md          ← 你常引用的人物、书籍、文化符号
-      ├── reference_articles/        ← 参考文章（用于风格学习）
-      └── drafts/                    ← 成品输出目录
+<studio root>/                     ← 例如 ~/writing/my-blog
+  ├── style_spec.md                ← 风格规格书（自动生成）
+  ├── style_init_log.md            ← 风格分析日志
+  ├── author_profile/
+  │   ├── identity.md              ← 你是谁
+  │   ├── experiences.md           ← 个人经历（随写作自然增长）
+  │   ├── opinions.md              ← 你的公开立场
+  │   └── refs.md                  ← 你常引用的人物、书籍、文化符号
+  ├── analyzed_authors/            ← 参考作者的文章和 spec
+  └── drafts/                      ← 成品输出目录
+      └── _brainstorm/             ← brainstorm 产物
 ```
 
 ## 风格规格书架构
@@ -179,7 +179,7 @@ bun ~/.claude/skills/baoyu-skills/skills/baoyu-imagine/scripts/main.ts \
 
 ### 不安装 baoyu-imagine 也能用
 
-`/ghostink illustrate` 在没有生图工具的情况下仍然可用——它会把 prompt 文件保存到 `studio/drafts/imgs/prompts/`，你可以把内容复制到任何生图工具中使用（Midjourney、DALL-E 网页版、ComfyUI 等）。
+`/ghostink illustrate` 在没有生图工具的情况下仍然可用——它会把 prompt 文件保存到 `drafts/imgs/prompts/`（相对 studio root），你可以把内容复制到任何生图工具中使用（Midjourney、DALL-E 网页版、ComfyUI 等）。
 
 ## 许可
 

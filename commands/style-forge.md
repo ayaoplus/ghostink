@@ -4,7 +4,7 @@ From analyzed references to YOUR voice. This is the "character creation" process
 
 ## Prerequisites
 
-- At least 1 analyzed reference author in `studio/references/[author]/style_spec.md`
+- At least 1 analyzed reference author in `analyzed_authors/[author]/style_spec.md`
   - If none exist, tell the user to run `/ghostink style-init` first
 - Ideally 2-4 reference authors for meaningful differentiation
 - The user should have some idea of their own domain and audience (if not, Phase 2 will draw it out)
@@ -45,7 +45,7 @@ The key insight: a reference author's DNA has **portable** and **non-portable** 
 
 ### 1.1 Load References
 
-Scan `studio/references/` for all analyzed authors. For each, load their `style_spec.md` and extract a summary of Layer 0 dimensions.
+Scan `analyzed_authors/` for all analyzed authors. For each, load their `style_spec.md` and extract a summary of Layer 0 dimensions.
 
 If `--references` flag is provided, only load the specified authors.
 
@@ -166,13 +166,13 @@ Ask:
 > 3. **What's something embarrassing or uncomfortable you'd be willing to share?** (vulnerability = trust)
 > 4. **Who are the people, books, tools, or ideas you keep referencing?** (your intellectual fingerprint)
 
-Write initial entries to `studio/author_profile/` files.
+Write initial entries to `author_profile/` files.
 
 ---
 
 ## Phase 3: Synthesis — Forging the Spec
 
-Now combine everything into a unified `studio/style_spec.md`.
+Now combine everything into a unified `style_spec.md`.
 
 ### 3.1 Layer 0 Synthesis
 
@@ -288,7 +288,7 @@ Write this at the top of the user's `style_spec.md` as a north star.
 
 ## Phase 5: Output & Review
 
-1. Write the complete `studio/style_spec.md`
+1. Write the complete `style_spec.md`
 2. Present a summary:
 
    **Your Voice DNA:**
@@ -306,7 +306,7 @@ Write this at the top of the user's `style_spec.md` as a north star.
    | Beliefs | 100% original | [list] |
    | Vocabulary | adapted | Colloquial base + AI terminology |
 
-3. Ask: "Read through `studio/style_spec.md`. Does it feel like YOU? Or does it feel like you're wearing someone else's clothes? The beliefs and positioning should feel natural — if anything feels forced, tell me."
+3. Ask: "Read through `style_spec.md`. Does it feel like YOU? Or does it feel like you're wearing someone else's clothes? The beliefs and positioning should feel natural — if anything feels forced, tell me."
 
 ---
 

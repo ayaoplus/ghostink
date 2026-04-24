@@ -28,13 +28,13 @@ If available, generate images via:
 ```bash
 # Single image
 bun [baoyu-imagine-path]/scripts/main.ts \
-  --promptfiles studio/drafts/imgs/prompts/01-type-slug.md \
-  --image studio/drafts/imgs/01-type-slug.png \
+  --promptfiles drafts/imgs/prompts/01-type-slug.md \
+  --image drafts/imgs/01-type-slug.png \
   --provider [provider] --ar [ratio] --quality [quality]
 
 # Batch mode (multiple images)
 bun [baoyu-imagine-path]/scripts/main.ts \
-  --batchfile studio/drafts/imgs/batch.json
+  --batchfile drafts/imgs/batch.json
 ```
 
 For batch mode, generate a `batch.json` file:
@@ -72,10 +72,10 @@ If found, use them directly — Claude can call MCP tools natively.
 If no image generation tool is available:
 
 1. Still run Steps 1-3 (analyze article, plan, generate prompts)
-2. Save all prompts to `studio/drafts/imgs/prompts/`
+2. Save all prompts to `drafts/imgs/prompts/`
 3. Tell the user:
 
-> Image prompts saved to `studio/drafts/imgs/prompts/`. No image generation tool detected.
+> Image prompts saved to `drafts/imgs/prompts/`. No image generation tool detected.
 >
 > To generate images, either:
 > - Install baoyu-skills: `git clone https://github.com/JimLiu/baoyu-skills ~/.claude/skills/baoyu-skills`
@@ -125,7 +125,7 @@ Wait for user approval. They may remove, add, or change items.
 
 ### Step 3: Generate Prompts
 
-For each approved illustration, write a prompt file to `studio/drafts/imgs/prompts/NN-type-slug.md`:
+For each approved illustration, write a prompt file to `drafts/imgs/prompts/NN-type-slug.md`:
 
 ```markdown
 ---
@@ -165,7 +165,7 @@ Based on detected runtime (see Runtime Detection above):
 - **MCP tools**: Call the tool for each prompt sequentially
 - **Prompt-only**: Skip this step, notify user
 
-Save images to `studio/drafts/imgs/NN-type-slug.png`
+Save images to `drafts/imgs/NN-type-slug.png`
 
 If any image fails, continue with the rest. Report failures at the end.
 

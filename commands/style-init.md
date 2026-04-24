@@ -12,14 +12,14 @@ Analyze a reference author — extract their DNA + style into a spec. Can be run
 
 **Resolution order for articles:**
 1. If `--path` is provided, use that directory
-2. If `[author-name]` is provided, look for `studio/references/[author-name]/articles/`
+2. If `[author-name]` is provided, look for `analyzed_authors/[author-name]/articles/`
 3. If neither, ask the user for the author name and article directory
 
 ## Output Modes
 
-**Multi-reference mode (default):** Output goes to `studio/references/[author-name]/style_spec.md`. This is for when you plan to analyze multiple authors and then forge your own spec via `/ghostink style-forge`.
+**Multi-reference mode (default):** Output goes to `analyzed_authors/[author-name]/style_spec.md`. This is for when you plan to analyze multiple authors and then forge your own spec via `/ghostink style-forge`.
 
-**Direct mode** (`--direct`): Output goes to `studio/style_spec.md`. This is for when you're emulating a single author directly, without forging.
+**Direct mode** (`--direct`): Output goes to `style_spec.md`. This is for when you're emulating a single author directly, without forging.
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ Analyze a reference author — extract their DNA + style into a spec. Can be run
 4. If more than 200: note that you'll sample from the collection rather than reading all
 5. Create directory structure if it doesn't exist:
    ```
-   studio/
+   
    ├── references/
    │   └── [author-name]/
    │       ├── style_spec.md          ← output: this author's analyzed spec
@@ -46,7 +46,7 @@ Analyze a reference author — extract their DNA + style into a spec. Can be run
    ├── author_profile/                ← YOUR profile (for forge, not init)
    └── drafts/
    ```
-   In `--direct` mode, output goes to `studio/style_spec.md` instead.
+   In `--direct` mode, output goes to `style_spec.md` instead.
 6. Tell the user: "Starting analysis of [author-name]. This will take several rounds. I'll work through it automatically and show you the result when done."
 
 ### Phase 1: Author DNA Discovery (the soul — before analyzing the body)
@@ -107,7 +107,7 @@ Analyze a reference author — extract their DNA + style into a spec. Can be run
    - When do readers most need this author? (crisis? boredom? confusion? anger?)
 
 4. Write Layer 0 of `style_spec.md` using the template
-5. Log DNA findings to `studio/style_init_log.md`
+5. Log DNA findings to `style_init_log.md`
 
 **Important:** Do NOT skip to style analysis prematurely. The DNA phase must produce a complete Layer 0 draft before proceeding. This is the foundation everything else builds on.
 
@@ -127,7 +127,7 @@ Now, WITH the DNA as context, analyze how the author's identity manifests in cra
    - "Starts with concrete scene" → because persuasion relies on personal experience (0.3)
    - "Always includes a cautionary 'but' after good news" → because emotional contract promises honesty over hype (0.6)
 4. Generate Layer 1 of `style_spec.md`
-5. Append findings to `studio/style_init_log.md`
+5. Append findings to `style_init_log.md`
 
 ### Phase 3: Iterative Refinement (Auto-loop)
 
@@ -144,7 +144,7 @@ For each subsequent round:
    - Revise inaccurate rules in both Layer 0 and Layer 1
    - Add newly discovered patterns (tagged with `[vN.N new]`)
    - Note confidence levels where relevant
-5. Append round summary to `studio/style_init_log.md`
+5. Append round summary to `style_init_log.md`
 
 **Convergence check**: After each round, compare the diff between the previous and current spec. If changes are minor (only small refinements, no new sections), the analysis has converged. Stop and proceed to Phase 4.
 
@@ -193,7 +193,7 @@ Run a statistical analysis across ALL available articles (not just the ones read
    - Top 10 "must use" and "never use" words
    - Confidence assessment (which rules are solid vs tentative)
 
-3. Ask: "Review the spec at `studio/references/[author]/style_spec.md`. Start with Layer 0 (Author DNA) — does it capture why this author is compelling? Then check if the style rules feel right. I can adjust either layer."
+3. Ask: "Review the spec at `analyzed_authors/[author]/style_spec.md`. Start with Layer 0 (Author DNA) — does it capture why this author is compelling? Then check if the style rules feel right. I can adjust either layer."
 
 4. If the user has more reference authors to analyze, suggest: "Run `/ghostink style-init [next-author]` to analyze another reference. When all references are done, run `/ghostink style-forge` to create your own spec."
 
@@ -201,10 +201,10 @@ Run a statistical analysis across ALL available articles (not just the ones read
 
 If the reference articles appear to be the user's own writing (check for first-person voice, personal anecdotes):
 
-1. Extract personal details mentioned across articles → draft `studio/author_profile/identity.md`
-2. Extract life experiences → draft `studio/author_profile/experiences.md` (numbered entries)
-3. Extract stated opinions/positions → draft `studio/author_profile/opinions.md`
-4. Extract frequently mentioned people, books, games, etc. → draft `studio/author_profile/references.md`
+1. Extract personal details mentioned across articles → draft `author_profile/identity.md`
+2. Extract life experiences → draft `author_profile/experiences.md` (numbered entries)
+3. Extract stated opinions/positions → draft `author_profile/opinions.md`
+4. Extract frequently mentioned people, books, games, etc. → draft `author_profile/refs.md`
 5. Present to user: "I also extracted some background info from your articles. Please review `author_profile/` and correct anything inaccurate."
 
 If the reference articles are someone else's writing:
@@ -215,7 +215,7 @@ If the reference articles are someone else's writing:
 
 After completion (multi-reference mode):
 ```
-studio/
+
 ├── references/
 │   └── [author-name]/
 │       ├── style_spec.md       ← this author's analyzed spec (DNA + style)
@@ -225,7 +225,7 @@ studio/
 
 After completion (direct mode with `--direct`):
 ```
-studio/
+
 ├── style_spec.md               ← the generated spec (for direct emulation)
 ├── style_init_log.md
 ├── author_profile/              ← bootstrapped (if applicable)

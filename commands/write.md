@@ -5,14 +5,14 @@ The main creation workflow. Guides the user through a multi-step process from id
 ## Prerequisites
 
 Before starting, verify these files exist:
-- `studio/style_spec.md` — if missing, tell the user to run `/ghostink style-init` first
-- `studio/author_profile/identity.md` — if missing, proceed but warn that narrative grounding will be limited
+- `style_spec.md` — if missing, tell the user to run `/ghostink style-init` first
+- `author_profile/identity.md` — if missing, proceed but warn that narrative grounding will be limited
 
 ## Step 1: Define Topic & Type
 
 ### Step 1a: Check for brainstorm artifacts (before asking anything)
 
-Silently scan `studio/drafts/_brainstorm/` for `.md` files. If the directory exists and contains files:
+Silently scan `drafts/_brainstorm/` for `.md` files. If the directory exists and contains files:
 
 1. List the most recent 3 files (by filename date, newest first)
 2. For each, read the YAML frontmatter to extract `topic`, `article_type`, and `status`
@@ -77,24 +77,24 @@ Wait for confirmation.
 
 ## Step 2: Generate Outline
 
-Read the article type template from `studio/style_spec.md` (Section 5 or equivalent).
+Read the article type template from `style_spec.md` (Section 5 or equivalent).
 
 Generate a structural outline following the template:
 - List each section/block with 1-2 sentence descriptions
 - Mark where "……" separators go
-- Indicate which personal experiences (if any) will be woven in — cross-reference `studio/author_profile/experiences.md` if available
+- Indicate which personal experiences (if any) will be woven in — cross-reference `author_profile/experiences.md` if available
 - Suggest where key data points or examples should appear
 
 Present the outline to the user. Wait for approval or revision requests.
 
 ## Step 3: Write Draft
 
-Load these from `studio/style_spec.md`:
+Load these from `style_spec.md`:
 - Layer 1 (Voice Core): sentence patterns, vocabulary fingerprint, prohibitions, emotional rules
 - Layer 2 (Domain Adaptation): terminology handling, data presentation
 - The specific article type template being used
 
-Also load `studio/author_profile/` files as background context (identity.md at minimum).
+Also load `author_profile/` files as background context (identity.md at minimum).
 
 Write the full article following:
 1. The approved outline from Step 2
@@ -156,7 +156,7 @@ After de-AI review, ask:
 
 If yes, run the illustration workflow from `commands/illustrate.md` on the current draft.
 
-If `studio/illustrate_config.md` doesn't exist, guide the user through first-time setup (choose provider, model, API key).
+If `illustrate_config.md` doesn't exist, guide the user through first-time setup (choose provider, model, API key).
 
 If the user declines, skip to Step 6.
 
@@ -186,15 +186,15 @@ Also generate 5 candidate titles following the title rules in the style spec (if
 - Colloquial, emotional, or suspenseful
 - No clickbait cliches
 
-Write the final article to `studio/drafts/YYYY-MM-DD_title.md`.
+Write the final article to `drafts/YYYY-MM-DD_title.md`.
 
 ## Step 7: Deposit New Experiences
 
-Silently scan the user's input from Step 1 (and any material provided during the session) for personal experiences that aren't already in `studio/author_profile/experiences.md`.
+Silently scan the user's input from Step 1 (and any material provided during the session) for personal experiences that aren't already in `author_profile/experiences.md`.
 
 If new experiences are found:
 1. Extract them into numbered entries (following the existing format in experiences.md)
 2. Show the user: "I noticed some new personal details from this session. Shall I add these to your author profile?"
-3. If approved, append to `studio/author_profile/experiences.md`
+3. If approved, append to `author_profile/experiences.md`
 
 This keeps the author profile growing naturally with each writing session.

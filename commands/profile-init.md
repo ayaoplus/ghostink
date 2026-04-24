@@ -1,6 +1,6 @@
 # /ghostink profile-init
 
-Guides first-time setup of `studio/author_profile/*.md` through a layered conversation. Not a blank-template fill-in-the-form — uses AskUserQuestion to actively extract your identity, experiences, opinions, and cultural references.
+Guides first-time setup of `author_profile/*.md` through a layered conversation. Not a blank-template fill-in-the-form — uses AskUserQuestion to actively extract your identity, experiences, opinions, and cultural references.
 
 ## Why this exists
 
@@ -19,17 +19,17 @@ If the profile files are empty or only contain template placeholders, ghostink d
 
 ## Prerequisites
 
-- `studio/` directory exists
-- Recommended: `studio/style_spec.md` exists (so the profile can be anchored to the voice you're building toward)
+- The studio root can be resolved (see SKILL.md → Studio Discovery Rules)
+- Recommended: `style_spec.md` exists at the studio root (so the profile can be anchored to the voice you're building toward)
 
-If `studio/` is missing, create the directory structure first:
+If `author_profile/` is missing at the studio root, create the directory structure first:
 
 ```
-studio/author_profile/
+author_profile/
   ├── identity.md
   ├── experiences.md
   ├── opinions.md
-  └── references.md
+  └── refs.md
 ```
 
 Copy templates from the skill's `templates/author_profile/` if the target files don't exist.
@@ -48,7 +48,7 @@ Present a one-line status to the user:
 > - identity.md: [空 / 部分填 / 已填]
 > - experiences.md: [N 条真实条目]
 > - opinions.md: [N 条]
-> - references.md: [N 条]
+> - refs.md: [N 条]
 
 Then ask:
 
@@ -151,7 +151,7 @@ For each opinion:
 - "有什么现在主流的做法，你觉得 10 年后会被证明是错的？"
 - "你觉得哪类人被高估了？哪类被低估了？"
 
-## Step 2 — Tier 2 Optional (references.md)
+## Step 2 — Tier 2 Optional (refs.md)
 
 Ask once:
 
@@ -171,7 +171,7 @@ If A, run 4 mini-rounds:
 
 **2.4 Films/Historical events** — "经常用作类比的电影或历史事件？"
 
-Each round: accept 0-5 entries, format to schema, append to `references.md`.
+Each round: accept 0-5 entries, format to schema, append to `refs.md`.
 
 ## Step 3 — Hand off
 
@@ -181,7 +181,7 @@ Summarize what got written:
 > - identity.md: 4 个核心字段已填
 > - experiences.md: 新增 N 条
 > - opinions.md: 新增 N 条
-> - references.md: 新增 N 条 / 跳过
+> - refs.md: 新增 N 条 / 跳过
 >
 > Profile 不是一次性填完就完了。每次跑 /write 结束时会建议你追加新素材，它会自然长大。
 

@@ -13,8 +13,8 @@ If you already have a sharp thesis, clear article type, and rough outline — sk
 
 ## Prerequisites
 
-- `studio/style_spec.md` exists (required — without it, article type selection has no anchor)
-- `studio/author_profile/experiences.md` exists (optional but strongly recommended — enables material suggestion in Step 5)
+- `style_spec.md` exists (required — without it, article type selection has no anchor)
+- `author_profile/experiences.md` exists (optional but strongly recommended — enables material suggestion in Step 5)
 
 If `style_spec.md` is missing, tell the user to run `/ghostink style-forge` first and stop.
 
@@ -65,10 +65,10 @@ At Step 3.5 you will challenge the user's framing. This is the most valuable par
 
 Silently read:
 
-- `studio/style_spec.md` — extract the Layer 0 Author DNA (section 0.x), the defined article types (section 5 or equivalent), the "never use" vocabulary
-- `studio/author_profile/identity.md` (if exists)
-- `studio/author_profile/experiences.md` (if exists) — just index the entry headers for now, don't dump content
-- `studio/author_profile/opinions.md` (if exists)
+- `style_spec.md` — extract the Layer 0 Author DNA (section 0.x), the defined article types (section 5 or equivalent), the "never use" vocabulary
+- `author_profile/identity.md` (if exists)
+- `author_profile/experiences.md` (if exists) — just index the entry headers for now, don't dump content
+- `author_profile/opinions.md` (if exists)
 
 Do not summarize any of this back to the user. They wrote it, they know what's in it.
 
@@ -220,7 +220,7 @@ Accept either "满意" (proceed to Step 7) or specific revision requests (revise
 
 ## Step 7 — Write artifact and hand off
 
-**Output required:** a markdown file at `studio/drafts/_brainstorm/YYYY-MM-DD_<slug>.md`.
+**Output required:** a markdown file at `drafts/_brainstorm/YYYY-MM-DD_<slug>.md`.
 
 Slug rules: take the topic, take first 4-6 meaningful words, convert to kebab-case. Strip punctuation. Use Chinese pinyin or keep Chinese characters — match what the user would recognize.
 
@@ -254,11 +254,11 @@ status: brainstormed
 
 After writing, do not announce the file path unless the user asks. Immediately hand off:
 
-> 大纲已存到 `studio/drafts/_brainstorm/YYYY-MM-DD_<slug>.md`。
+> 大纲已存到 `drafts/_brainstorm/YYYY-MM-DD_<slug>.md`。
 >
 > 现在接着写稿吗？
 >
-> - A) 是，现在就开始。你运行 `/ghostink write` 然后在第一步说"基于 `studio/drafts/_brainstorm/YYYY-MM-DD_<slug>.md`"，write 会跳过讨论直接按大纲写
+> - A) 是，现在就开始。你运行 `/ghostink write` 然后在第一步说"基于 `drafts/_brainstorm/YYYY-MM-DD_<slug>.md`"，write 会跳过讨论直接按大纲写
 > - B) 不，先放着。产物已经保存，随时可以回来
 > - C) 骨架我再想想，重开 brainstorm
 

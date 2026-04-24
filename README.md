@@ -92,20 +92,20 @@ Or pivot your style to a new domain:
 
 ## Directory Structure
 
-Ghostink reads from and writes to a `studio/` directory in your project:
+Ghostink reads from and writes to a **studio root** — a directory that holds everything ghostink needs. See SKILL.md → "Studio Discovery Rules" for how it's resolved (env var, cwd, auto-discover).
 
 ```
-your-project/
-  └── studio/
-      ├── style_spec.md              ← your style rulebook (auto-generated)
-      ├── style_init_log.md          ← analysis log from style-init
-      ├── author_profile/
-      │   ├── identity.md            ← who you are
-      │   ├── experiences.md         ← personal stories (grows over time)
-      │   ├── opinions.md            ← your stated positions
-      │   └── references.md          ← books, people, culture you cite
-      ├── reference_articles/        ← source articles for style learning
-      └── drafts/                    ← where finished articles go
+<studio root>/                     ← e.g., ~/writing/my-blog
+  ├── style_spec.md                ← your style rulebook (auto-generated)
+  ├── style_init_log.md            ← analysis log from style-init
+  ├── author_profile/
+  │   ├── identity.md              ← who you are
+  │   ├── experiences.md           ← personal stories (grows over time)
+  │   ├── opinions.md              ← your stated positions
+  │   └── refs.md                  ← books, people, culture you cite
+  ├── analyzed_authors/            ← source articles + specs for style learning
+  └── drafts/                      ← where finished articles go
+      └── _brainstorm/             ← brainstorm artifacts
 ```
 
 ## Style Spec Architecture
@@ -181,7 +181,7 @@ For advanced configuration (default provider, batch limits, custom models), crea
 
 ### Without baoyu-imagine
 
-If you don't install baoyu-imagine, `/ghostink illustrate` still works — it generates prompt files at `studio/drafts/imgs/prompts/` that you can copy into any image tool (Midjourney, DALL-E web UI, ComfyUI, etc.).
+If you don't install baoyu-imagine, `/ghostink illustrate` still works — it generates prompt files at `drafts/imgs/prompts/` (relative to your studio root) that you can copy into any image tool (Midjourney, DALL-E web UI, ComfyUI, etc.).
 
 ## License
 

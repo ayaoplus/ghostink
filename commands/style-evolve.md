@@ -20,7 +20,7 @@ Examples:
 - "When writing about tech topics, I'm more analytical and less emotional"
 
 Process:
-1. Read current `studio/style_spec.md`
+1. Read current `style_spec.md`
 2. Identify which rule(s) the feedback applies to
 3. Propose specific changes to the spec (show diff)
 4. Wait for user approval
@@ -34,7 +34,7 @@ Example:
 - "I want to evolve this financial blogger style into an AI/tech blogger style"
 
 Process:
-1. Read current `studio/style_spec.md`
+1. Read current `style_spec.md`
 2. Identify the three layers:
    - Layer 1 (Voice Core): preserve entirely
    - Layer 2 (Domain): needs replacement
@@ -54,7 +54,7 @@ Process:
 The user provides a completed article (either their own writing or a Ghostink output) and asks for the spec to learn from it:
 
 ```
-/ghostink style-evolve --from studio/drafts/2025-04-04_article.md
+/ghostink style-evolve --from drafts/2025-04-04_article.md
 ```
 
 Process:
@@ -66,7 +66,7 @@ Process:
 
 ## Changelog
 
-Every evolution is logged. Append to `studio/style_spec.md` or a companion changelog file:
+Every evolution is logged. Append to `style_spec.md` or a companion changelog file:
 
 ```markdown
 ## Changelog
@@ -78,4 +78,4 @@ Every evolution is logged. Append to `studio/style_spec.md` or a companion chang
 
 - Never delete existing rules without explicit user approval
 - When modifying Layer 1 (Voice Core), always warn: "This changes your fundamental voice characteristics. Are you sure?"
-- Keep a backup: before any major change, copy the current spec to `studio/style_spec_backup_YYYYMMDD.md`
+- Keep a backup: before any major change, copy the current spec to `style_spec_backup_YYYYMMDD.md`

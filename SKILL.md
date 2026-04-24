@@ -36,43 +36,60 @@ Analyze references ──→ Forge YOUR spec ──→ Write in your voice
 - **Layer 2 — Domain Adaptation**: Terminology handling, article types, data presentation (topic-specific)
 - **Layer 3 — Platform Adaptation**: Formatting rules per publishing channel (platform-specific)
 
-**Author Profile** (`author_profile/`): Background knowledge about you — experiences, opinions, references. Grows naturally as you write. AI uses this to ground narratives in real details instead of fabricating.
+**Author Profile** (`author_profile/`): Background knowledge about you — experiences, opinions, cultural references. Grows naturally as you write. AI uses this to ground narratives in real details instead of fabricating.
 
 **Article Types**: Each style spec defines 2-4 article types with distinct structural templates. The writing workflow selects the appropriate type before generating.
 
-## Directory Convention
+## Studio Discovery Rules
 
-Ghostink looks for files in a `studio/` directory relative to your project root:
+Ghostink works against a **studio root** — a directory that holds `style_spec.md`, `author_profile/`, `drafts/`, `analyzed_authors/`, etc. Every path referenced in the command files (e.g., `style_spec.md`, `author_profile/identity.md`) is **relative to the studio root**.
+
+Resolve the studio root in this order, stop at the first match:
+
+1. If `$GHOSTINK_STUDIO` environment variable is set → use that path as the studio root
+2. If `cwd` contains `style_spec.md` → `cwd` is the studio root
+3. Walk up from `cwd` (do **not** cross `$HOME`); the first ancestor directory containing `style_spec.md` is the studio root
+4. Otherwise (initialization case, nothing exists yet) → use `cwd` as the studio root; new files will be created here
+
+**For CC / Codex and similar cwd-aware runtimes:** just `cd` to your writing directory and use ghostink normally — rule 2 or 3 picks it up.
+
+**For global agents without a meaningful cwd (e.g., OpenClaw):** the orchestrator should inject `$GHOSTINK_STUDIO` when spawning the agent, or pass the path explicitly in the initial prompt. Rule 1 handles both.
+
+## Directory Layout (at the studio root)
 
 ```
-your-project/
-  └── studio/
-      ├── style_spec.md              ← YOUR style rulebook (output of style-forge)
-      ├── author_profile/
-      │   ├── identity.md            ← who you are
-      │   ├── experiences.md         ← life stories (numbered entries)
-      │   ├── opinions.md            ← positions you've publicly taken
-      │   └── references.md          ← people, books, games you often cite
-      ├── references/                ← analyzed reference authors
-      │   ├── catblade/
-      │   │   ├── style_spec.md      ← catblade's analyzed spec
-      │   │   └── articles/          ← catblade's source articles
-      │   └── [another_author]/
-      │       ├── style_spec.md
-      │       └── articles/
-      └── drafts/                    ← output directory
+<studio root>/                     ← resolved per rules above (e.g., ~/cortex/aaa)
+  ├── style_spec.md                ← YOUR style rulebook (output of style-forge)
+  ├── author_profile/
+  │   ├── identity.md              ← who you are
+  │   ├── experiences.md           ← life stories (numbered entries)
+  │   ├── opinions.md              ← positions you've publicly taken
+  │   └── refs.md                  ← people, books, games you often cite
+  ├── analyzed_authors/            ← analyzed reference authors
+  │   ├── catblade/
+  │   │   ├── style_spec.md        ← catblade's analyzed spec
+  │   │   └── articles/            ← catblade's source articles
+  │   └── [another_author]/
+  │       ├── style_spec.md
+  │       └── articles/
+  ├── drafts/                      ← output directory
+  │   ├── YYYY-MM-DD_<slug>.md     ← final articles
+  │   └── _brainstorm/             ← brainstorm artifacts (feeds /write)
+  └── illustrate_config.md         ← (optional) image gen provider settings
 ```
 
-If `studio/` doesn't exist, Ghostink will guide you through setup.
+Note: this is a flat layout; there is **no** `studio/` wrapper subdirectory. The studio root is itself the working folder.
 
 ## First-Time Setup
 
-1. Create `studio/references/[author]/articles/` for each reference author, put 20+ of their articles in each
-2. Run `/ghostink style-init [author]` for each reference to analyze their DNA + style
-3. Run `/ghostink style-forge` to create YOUR spec from references + your own identity
-4. Start writing with `/ghostink write`
+1. Pick (or create) a directory to be your studio root — e.g., `~/writing/my-blog`. Either `cd` there before running commands, or set `GHOSTINK_STUDIO`.
+2. Create `analyzed_authors/[author]/articles/` for each reference author; put 20+ of their articles in each.
+3. Run `/ghostink style-init [author]` for each reference to analyze their DNA + style.
+4. Run `/ghostink style-forge` to create YOUR spec from references + your own identity.
+5. Run `/ghostink profile-init` to seed `author_profile/` interactively (identity, experiences, opinions, refs).
+6. Start writing with `/ghostink brainstorm` (for fuzzy ideas) or `/ghostink write` (for clear ones).
 
-For single-reference use, you can skip step 3 — `style-init` can write directly to `studio/style_spec.md` if you're emulating rather than forging.
+For single-reference use, you can skip step 4 — `style-init` can write directly to `style_spec.md` if you're emulating rather than forging.
 
 ## Command Details
 

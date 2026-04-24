@@ -11,7 +11,7 @@ Audit any text against your style spec. Works on Ghostink-generated drafts or yo
 
 ## Process
 
-1. Load `studio/style_spec.md`
+1. Load `style_spec.md`
 2. Read the target text (from file or user input)
 3. Run all checks below
 4. Output a structured audit report
@@ -56,7 +56,7 @@ Audit any text against your style spec. Works on Ghostink-generated drafts or yo
 Ghostink Style Audit
 ====================
 Target: [filename or "inline text"]
-Spec: studio/style_spec.md
+Spec: style_spec.md
 Article Type: [detected or unknown]
 
 Score: 82/100
