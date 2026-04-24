@@ -41,31 +41,67 @@ Ghostink doesn't just "write in the style of." It extracts a detailed **Style Sp
 git clone https://github.com/[your-username]/ghostink.git ~/.claude/skills/ghostink
 ```
 
-### 2. Initialize your style
+### 2. Pick (or create) your studio root
 
-Put 20+ reference articles (markdown or text files) in a directory, then:
+A **studio root** is the directory where ghostink stores your style spec, author profile, drafts, and analyzed reference authors. It is **not** the skill source directory — it's *your* writing workspace.
+
+Two ways to tell ghostink where your studio root is (see [Configuring the Studio Root](#configuring-the-studio-root) for details):
+
+```bash
+# Option A — cd into it (simplest for Claude Code / Codex)
+mkdir -p ~/writing/my-blog && cd ~/writing/my-blog
+
+# Option B — set an environment variable (required for global agents without a meaningful cwd)
+export GHOSTINK_STUDIO=~/writing/my-blog
+```
+
+### 3. Analyze a reference author (optional but recommended)
+
+Put 20+ articles by a writer whose style you admire (including your own past writing) in `analyzed_authors/<name>/articles/`, then:
 
 ```
-/ghostink style-init path/to/your/articles/
+/ghostink style-init <name>
 ```
 
-Ghostink will analyze your articles across multiple rounds and generate a Style Spec. This takes 10-20 minutes. Grab a coffee.
+Ghostink will analyze the articles across multiple rounds and produce a spec at `analyzed_authors/<name>/style_spec.md`. This takes 10-20 minutes.
 
-### 3. Start writing
+Repeat for each reference you want to learn from.
+
+### 4. Forge your own style spec
+
+```
+/ghostink style-forge
+```
+
+Blends your analyzed references + your own identity into `style_spec.md` at the studio root. This is the spec ghostink writes against.
+
+### 5. Seed your author profile
+
+```
+/ghostink profile-init
+```
+
+Interactive 5-10 minute walkthrough that fills `author_profile/` with your identity, a few signature experiences, your opinions, and cultural references. Without this, ghostink degrades to "generic AI with your style spec" — the profile is what lets it write with your actual life as material.
+
+### 6. Write
+
+For a rough idea that needs shaping:
+
+```
+/ghostink brainstorm
+```
+
+Dynamic Socratic dialogue that turns a fuzzy topic into a structured outline. Produces an artifact that `/write` can consume directly.
+
+For an idea you already have clear:
 
 ```
 /ghostink write
 ```
 
-Follow the guided workflow:
-1. **Define** your topic and core argument
-2. **Review** the generated outline
-3. **Read** the draft
-4. **Check** the auto-audit report
-5. **Revise** until satisfied
-6. **Format** for your publishing platform
+Guided workflow: define → outline → draft → auto style-check → de-AI review → optional illustration → platform formatting. `/write` also detects `/brainstorm` artifacts automatically.
 
-### 4. Evolve over time
+### 7. Evolve over time
 
 After publishing, if something felt off:
 
@@ -73,26 +109,23 @@ After publishing, if something felt off:
 /ghostink style-evolve "The self-deprecation was too heavy in that last piece"
 ```
 
-Or pivot your style to a new domain:
-
-```
-/ghostink style-evolve "Adapt this for AI/tech content, keep the conversational tone"
-```
-
 ## Commands
 
 | Command | What it does |
 |---------|-------------|
+| `/ghostink brainstorm` | Interactive thinking partner — turn a rough idea into a structured outline through dynamic Socratic dialogue |
 | `/ghostink write` | Full creation workflow: idea → outline → draft → de-AI → illustrate → format |
 | `/ghostink check [file]` | Run style audit on any text, output compliance report |
 | `/ghostink deai [file]` | Run the 9-rule de-AI review on any text |
 | `/ghostink illustrate [file]` | Generate and insert illustrations for an article |
-| `/ghostink style-init [dir]` | Generate a Style Spec from reference articles |
+| `/ghostink style-init [name]` | Analyze a reference author's articles → produce their style spec |
+| `/ghostink style-forge` | Blend analyzed references + your identity into YOUR style spec |
 | `/ghostink style-evolve` | Update your spec based on feedback or new direction |
+| `/ghostink profile-init` | Layered interactive setup of `author_profile/` (identity, experiences, opinions, refs) |
 
 ## Directory Structure
 
-Ghostink reads from and writes to a **studio root** — a directory that holds everything ghostink needs. See SKILL.md → "Studio Discovery Rules" for how it's resolved (env var, cwd, auto-discover).
+Ghostink reads from and writes to a **studio root** — a directory that holds everything ghostink needs. The source skill directory (`~/.claude/skills/ghostink`) is separate; it holds only the instructions. Your content lives in the studio root.
 
 ```
 <studio root>/                     ← e.g., ~/writing/my-blog
@@ -106,6 +139,68 @@ Ghostink reads from and writes to a **studio root** — a directory that holds e
   ├── analyzed_authors/            ← source articles + specs for style learning
   └── drafts/                      ← where finished articles go
       └── _brainstorm/             ← brainstorm artifacts
+```
+
+## Configuring the Studio Root
+
+Ghostink resolves the studio root in this order, stopping at the first match:
+
+1. **`$GHOSTINK_STUDIO` environment variable** — if set, that path is the studio root
+2. **`cwd` contains `style_spec.md`** — current directory is the studio root
+3. **Ancestor of `cwd` contains `style_spec.md`** (stops at `$HOME`) — that ancestor is the studio root
+4. **Otherwise** — `cwd` is treated as the studio root (initialization case)
+
+### For Claude Code / Codex and other cwd-aware runtimes
+
+Just `cd` to your writing directory. Rules 2/3 pick it up automatically once `style_spec.md` exists.
+
+```bash
+cd ~/writing/my-blog
+claude  # or: codex
+# inside, run /ghostink write — it'll read/write relative to ~/writing/my-blog
+```
+
+If you keep multiple studios (different blogs, different voices), open a separate terminal for each:
+
+```bash
+cd ~/writing/tech-blog   # studio A
+cd ~/writing/personal    # studio B
+```
+
+### For global agents without a meaningful cwd (OpenClaw, etc.)
+
+Orchestrator-style agents don't have a stable cwd. Inject `GHOSTINK_STUDIO` when you spawn the agent, or set it in your shell profile:
+
+```bash
+# Option A: shell profile (~/.zshrc, ~/.bashrc)
+export GHOSTINK_STUDIO=~/writing/my-blog
+
+# Option B: per-invocation
+GHOSTINK_STUDIO=~/writing/my-blog <agent-command>
+
+# Option C: pass via the agent's config / env injection mechanism
+# (varies by orchestrator — consult its docs)
+```
+
+Once `$GHOSTINK_STUDIO` is set, every ghostink command reads and writes under that path regardless of where the agent is running.
+
+### Syncing across machines
+
+The studio root is just a directory — point `$GHOSTINK_STUDIO` at any location:
+
+- **iCloud / Dropbox / OneDrive**: `export GHOSTINK_STUDIO=~/Library/Mobile\ Documents/.../my-blog`
+- **A private git repo**: clone to `~/writing/my-blog`, commit/push as usual
+- **A network drive**: same idea, just point at the mount point
+
+Ghostink doesn't care what's underneath — it only reads/writes standard files.
+
+### Minimal sanity check
+
+Set the env var (or cd somewhere), then verify resolution:
+
+```bash
+# If $GHOSTINK_STUDIO is set, this should match it
+echo "${GHOSTINK_STUDIO:-$(pwd)}"
 ```
 
 ## Style Spec Architecture
