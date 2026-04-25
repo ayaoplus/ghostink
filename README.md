@@ -1,56 +1,154 @@
 # Ghostink
 
-> Style-driven writing system: separate **what you think** from **how it's written**.
+> 风格驱动的写作系统:把"你思考什么"和"AI 怎么写"分开。
 
-Ghostink is a [Claude Code](https://claude.ai/claude-code) skill built for
-high-frequency Chinese new-media writers (WeChat / X / Weibo). It splits a
-writer's **Soul** (identity), **Form** (prose style), and **Playbook**
-(article-type templates) into three independent layers, plus a **Profile**
-(personal material library), so you can mix and match like CSS for prose.
+Ghostink 是一个 [Claude Code](https://claude.ai/claude-code) Skill,
+为高频更新的中文新媒体创作者(公众号 / X / 微博)而生。它把作者的
+**Soul(灵魂)/ Form(文笔)/ Playbook(打法)**三层分离,配合个人 **Profile**
+(素材库)共同驱动写作——你提供想法和经历,Ghostink 处理结构、风格、格式。
 
-> **For Chinese readers / 中文读者**: please read [README_CN.md](./README_CN.md)
-> for full documentation. The Chinese version is the source of truth.
+## 核心理念:为什么三层分离
 
-## Quick Start
+传统的"写作风格"工具把灵魂和形态揉在一起。Ghostink 的关键洞察是:
+
+- **Soul**(灵魂):你是谁,为什么读者要追你——价值主张 / 定位 / 信念 / 信任机制 / 情感契约
+- **Form**(文笔):字怎么摆——句式 / 词汇 / 开头结尾 / 节奏
+- **Playbook**(打法):不同情境下用哪种文章类型(日报 / 教程 / 评论 / ...)
+
+灵魂跨主题、跨平台稳定。文笔可以为不同场景换。打法是灵魂在不同情境下的固化版本。
+**Profile**(身份 / 经历 / 观点 / 参照系)是与三者并行的素材输入。
+
+这样设计的好处:你可以"借猫笔刀的灵魂 + 用王小波的文笔 + 走李笑来的打法",
+混搭成你自己的声音——只要兼容性允许。
+
+## 快速开始
 
 ```bash
+# 1. 切到一个空目录(将作为你的 studio root)
 cd ~/writing/my-blog
-/ghostink setup            # 15-20 min interactive wizard
-/ghostink write "topic"    # write an article
-/ghostink library          # manage references / switch styles
+
+# 2. 跑 setup,15-20 分钟交互式向导
+/ghostink setup
+
+# 3. 写第一篇
+/ghostink write "你的主题"
+
+# 4. 库管理(换文笔 / 看库存 / 加新参考)
+/ghostink library
 ```
 
-## Core Concepts
+## 五个核心概念
 
-- **Soul** — who you are: value proposition, positioning, beliefs, trust mechanics
-- **Form** — how you write: sentence rhythm, vocabulary, opening/closing patterns
-- **Playbook** — which template for which situation (daily report / tutorial / commentary / ...)
-- **Profile** — what you have: identity, experiences, opinions, references
+| 概念 | 是什么 | 文件 |
+|---|---|---|
+| **Soul**(灵魂) | 你是谁 | `soul.md` |
+| **Form**(文笔) | 字怎么摆 | `form.md` |
+| **Playbook**(打法) | 不同情境用哪种文章类型 | `playbook.md` |
+| **Profile**(素材) | 你有什么 | `profile/` |
+| **Skeleton**(骨架) | 单篇文章的角度/结构 | `drafts/_brainstorm/*` |
 
-Soul stays stable across topics. Form is swappable. Playbook is Soul applied
-to specific scenarios. Profile is a parallel material input.
+## 三个一级命令
 
-## Built-in Library (Chinese)
+### `/ghostink setup`
+首次/重置:建立你的创作者档案。15-20 分钟交互向导,产出
+soul / form / playbook / profile。
 
-Five iconic Chinese authors come pre-distilled with complete trios:
+### `/ghostink write [topic]`
+写一篇文章的主路径。内部依次走:选 playbook → brainstorm 出 skeleton →
+draft → form check → deai 报告 → 平台输出。
 
-- **三毛 (sanmao)** — lyrical narrator
-- **王小波 (wangxiaobo)** — ironic essayist
-- **韩寒 (hanhan)** — short-sentence blogger
-- **猫笔刀 (catblade)** — companion-style finance writer
-- **李笑来 (lixiaolai)** — concept evangelist
+### `/ghostink library`
+库管理。子命令:
+- `library list` — 列出内置 + 自拆的 soul/form/playbook
+- `library info [name]` — 看某个的详情
+- `library analyze [author]` — 拆一个新参考
+- `library pick {soul/form/playbook} [name]` — 切换在用的
 
-## Status
+## 内置作家库
 
-- **v1**: Chinese-first, pure-prompt skill (no scripts/builds)
-- **International support**: a v2+ goal, see DESIGN.md
+为开箱即用,Ghostink 内置 5 位中文作家的完整三件套:
 
-## Documentation
+| Slug | 显示名 | 灵魂派系 | 适用场景 |
+|---|---|---|---|
+| `sanmao` | 三毛 | 抒情派 + 陪伴派 | 个人散文 / 长情叙事 |
+| `wangxiaobo` | 王小波 | 思辨派 + 辛辣派 | 杂文 / 思辨长文 |
+| `hanhan` | 韩寒 | 辛辣派 + 思辨派 | 博客评论 / 短论 |
+| `catblade` | 猫笔刀 | 陪伴派 + 思辨派 | 日报型公众号 / 财经陪伴 |
+| `lixiaolai` | 李笑来 | 布道派 + 教程派 | 概念布道 / 框架教学 |
 
-- [README_CN.md](./README_CN.md) — full docs (Chinese)
-- [DESIGN.md](./DESIGN.md) — architecture and decisions
-- [SKILL.md](./SKILL.md) — Claude-loaded entry point
-- [examples/catblade-demo](./examples/catblade-demo) — end-to-end demo
+新人 setup 时可以直接选一套抄起步,以后自然演化。
+
+## 端到端示例
+
+完整示例见 `examples/catblade-demo/`,包括:
+- setup + write 全流程对话脚本(`transcript.md`)
+- 模拟产出的完整 studio(`studio/`)
+- 一篇 1820 字的 catblade 风格成稿(`drafts/2026-04-24-ai-junior-dev.md`)
+- 跑 demo 时的反思(`notes.md`)
+
+## 边角入口
+
+| 命令 | 用途 |
+|---|---|
+| `/ghostink check [file]` | 任意文本 form 合规审查(出报告,不改原文件) |
+| `/ghostink deai [file]` | 任意文本去 AI 感(出报告,决定权在你) |
+| `/ghostink illustrate [file]` | 配图(挂载式,调外部图像生成 CLI) |
+
+## 派系标签 & 兼容性
+
+Ghostink 通过派系标签管理 soul/form/playbook 之间的兼容性。完整词表见
+`built-in/library/factions.md`。
+
+兼容性是**软警告**——同源安静通过,不兼容也允许用户继续(创作者的
+"反差搭配"实验有时候是新风格的来源)。`/ghostink library pick` 切换时
+基于派系标签做检查。
+
+## 用户工作室目录布局
+
+```
+<studio root>/
+├── soul.md                 ← 当前在用的 soul
+├── form.md                 ← 当前在用的 form
+├── playbook.md             ← 你的打法集合
+├── profile/                ← 素材库
+│   ├── identity.md
+│   ├── experiences.md
+│   ├── opinions.md
+│   └── refs.md
+├── library/                ← 自拆的参考(可选)
+│   ├── souls/
+│   ├── forms/
+│   └── playbooks/
+└── drafts/
+    ├── YYYY-MM-DD-<slug>.md     ← 成品
+    └── _brainstorm/             ← 中间骨架
+```
+
+## Studio Discovery 规则
+
+按以下顺序解析,首匹配为准:
+
+1. `$GHOSTINK_STUDIO` 环境变量
+2. cwd 含 `soul.md` → cwd 即 studio root
+3. 向上找祖先目录(不跨 `$HOME`)
+4. 否则 cwd 即 studio root(初始化场景)
+
+## 二阶段路线图
+
+下面这些功能在 v2+ 实现:
+
+- 多 Soul 完整支持(同时绑定不同平台,如公众号 vs X 用不同灵魂)
+- `evolve / refresh` 从已发文章反向学习
+- 内置库 v2(用户准备 30+ 篇代表作跑 `library analyze` 重训)
+- Form 库扩充(再加 5-10 位中文作家)
+
+完整设计与决策记录见 `DESIGN.md`。
+
+## 贡献
+
+欢迎用户拆好新的作家三件套提交回上游。提交规范见 `built-in/library/README.md`。
+
+> English version: [README_EN.md](./README_EN.md)
 
 ## License
 

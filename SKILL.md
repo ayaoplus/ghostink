@@ -111,15 +111,7 @@ ghostink 在一个 **studio root** 工作——含 soul.md、profile/、drafts/ 
 
 ghostink 主要服务中文创作者。命令文档、库内容(soul/form/playbook 正文)使用中文,关键术语锚点(soul/form/playbook/profile/skeleton)保留英文。frontmatter 字段名(`type:`、`compat_form:` 等)必须英文。
 
-国际用户的入口在 `README.md`(英文简介 + 指向 `README_CN.md`)。
-
-## 从旧版迁移
-
-如使用过含 `style-init` / `style-forge` 等命令的旧版本:
-
-1. 重新跑 `/ghostink setup` 是最简方式(自动产出新版三件套)
-2. 旧 `analyzed_authors/` → 新 `library/`(目录改名 + 文件按新 schema 拆分)
-3. 旧 `author_profile/` → `profile/`(直接 mv)
+英文版见 `README_EN.md`。
 
 ## 设计文档
 
