@@ -1,112 +1,126 @@
 # Ghostink
 
-A style-driven writing system that learns your voice and writes like you.
+> 风格驱动的写作系统:把"你思考什么"(人)和"AI 怎么写"(机器)分开。
+>
+> 核心理念是把作者的 **Soul(灵魂)/ Form(文笔)/ Playbook(打法)** 三层分离,
+> 配合个人 **Profile(素材库)** 共同驱动写作。
 
-Ghostink separates **what you think** (human) from **how it's written** (AI). You provide ideas and experiences; Ghostink handles structure, style, and formatting — all guided by a style spec extracted from your own writing.
-
-## Available Commands
-
-| Command | Description |
-|---------|-------------|
-| `/ghostink brainstorm` | Interactive thinking partner — turn a rough idea into a structured outline through dynamic Socratic dialogue |
-| `/ghostink write` | Create an article through a guided multi-step workflow |
-| `/ghostink check` | Audit any text against your style spec |
-| `/ghostink deai` | Remove AI-flavor — Ghostink's signature de-AI review |
-| `/ghostink illustrate` | Generate article illustrations with configurable image APIs |
-| `/ghostink style-init` | Analyze a reference author — extract their DNA + style into a spec |
-| `/ghostink style-forge` | Forge YOUR spec from analyzed references + your own identity |
-| `/ghostink style-evolve` | Update your style spec based on feedback |
-| `/ghostink profile-init` | Layered interactive setup of `author_profile/` — identity, experiences, opinions, references |
-
-## How It Works
+## 快速开始
 
 ```
-Analyze references ──→ Forge YOUR spec ──→ Write in your voice
-   (style-init)         (style-forge)          (write)
-        ↑                     ↑                    ↓
-  reference authors    your identity +      feedback → evolve spec
-                       borrowed traits
+1. /ghostink setup            建立你的创作者档案(soul / form / playbook / profile)
+2. /ghostink write [topic]    写一篇文章
+3. /ghostink library          换文笔、加新参考、看库存
 ```
 
-### Core Concepts
+新人按这 3 步即可上手。完整示例见 `examples/catblade-demo/`。
 
-**Style Spec** (`style_spec.md`): A detailed rulebook that captures both WHO you are and HOW you write. It has four layers:
-- **Layer 0 — Author DNA**: Why readers follow, author positioning, narrative engine, core beliefs, trust mechanics, emotional contract (the soul — portable across domains)
-- **Layer 1 — Voice Core**: Sentence patterns, tone, humor style, prohibitions (portable across topics)
-- **Layer 2 — Domain Adaptation**: Terminology handling, article types, data presentation (topic-specific)
-- **Layer 3 — Platform Adaptation**: Formatting rules per publishing channel (platform-specific)
+## 五个核心概念
 
-**Author Profile** (`author_profile/`): Background knowledge about you — experiences, opinions, cultural references. Grows naturally as you write. AI uses this to ground narratives in real details instead of fabricating.
+| 概念 | 是什么 | 文件 |
+|---|---|---|
+| **Soul**(灵魂) | 你是谁:价值主张 / 定位 / 信念 / 信任机制 / 情感契约 | `soul.md` |
+| **Form**(文笔) | 字怎么摆:句式 / 词汇 / 开头结尾 / 节奏 | `form.md` |
+| **Playbook**(打法) | 不同情境下用哪种文章类型(日报/教程/评论/...) | `playbook.md` |
+| **Profile**(素材库) | 你有什么:身份 / 经历 / 观点 / 参照系 | `profile/` |
+| **Skeleton**(骨架) | 单篇文章的角度/结构/递进/收尾(write 中间产物) | `drafts/_brainstorm/*` |
 
-**Article Types**: Each style spec defines 2-4 article types with distinct structural templates. The writing workflow selects the appropriate type before generating.
+Soul 跨主题、跨平台稳定;Form 可换;Playbook 是 Soul 在不同情境下的固化打法。Profile 是与三者并行的素材输入。
 
-## Studio Discovery Rules
+## 三个一级命令
 
-Ghostink works against a **studio root** — a directory that holds `style_spec.md`, `author_profile/`, `drafts/`, `analyzed_authors/`, etc. Every path referenced in the command files (e.g., `style_spec.md`, `author_profile/identity.md`) is **relative to the studio root**.
+### `/ghostink setup`
+首次使用或全部重做。15-20 分钟交互向导,产出 soul / form / playbook / profile。
+详见 `commands/setup.md`。
 
-Resolve the studio root in this order, stop at the first match:
+### `/ghostink write [topic]`
+写一篇文章的主路径。内部依次走:选 playbook → brainstorm 出 skeleton → draft → form check → deai 报告 → 平台输出。
+详见 `commands/write.md`。
 
-1. If `$GHOSTINK_STUDIO` environment variable is set → use that path as the studio root
-2. If `cwd` contains `style_spec.md` → `cwd` is the studio root
-3. Walk up from `cwd` (do **not** cross `$HOME`); the first ancestor directory containing `style_spec.md` is the studio root
-4. Otherwise (initialization case, nothing exists yet) → use `cwd` as the studio root; new files will be created here
+### `/ghostink library`
+库管理。子命令:
 
-**For CC / Codex and similar cwd-aware runtimes:** just `cd` to your writing directory and use ghostink normally — rule 2 or 3 picks it up.
+| 子命令 | 用途 |
+|---|---|
+| `library list` | 列出内置 + 用户自拆的 soul/form/playbook,标版本徽章 |
+| `library info [name]` | 看某个资源的详情 |
+| `library analyze [author] [--quick] [--only=soul/form/playbook]` | 拆一个新参考 |
+| `library pick {soul/form/playbook} [name]` | 切换当前在用的 soul/form/playbook |
 
-**For global agents without a meaningful cwd (e.g., OpenClaw):** the orchestrator should inject `$GHOSTINK_STUDIO` when spawning the agent, or pass the path explicitly in the initial prompt. Rule 1 handles both.
+详见 `commands/library.md`。
 
-## Directory Layout (at the studio root)
+## 边角入口(可选)
+
+| 命令 | 用途 |
+|---|---|
+| `/ghostink check [file]` | 任意文本审查(form 合规) |
+| `/ghostink deai [file]` | 任意文本去 AI 感(出报告,不强制改) |
+| `/ghostink illustrate [file]` | 配图(挂载式,调外部图像生成 CLI) |
+
+## 派系标签
+
+ghostink 通过派系标签管理 soul/form/playbook 之间的兼容性。完整词表见 `built-in/library/factions.md`,所有 library 文件的 `factions` / `compat_*` / `incompat_*` 字段只能从该词表选。
+
+## Studio Discovery 规则
+
+ghostink 在一个 **studio root** 工作——含 soul.md、profile/、drafts/ 的目录。所有路径相对 studio root。
+
+按以下顺序解析,首匹配为准:
+
+1. `$GHOSTINK_STUDIO` 环境变量
+2. cwd 含 `soul.md` 或 `souls/` 目录 → cwd 即 studio root
+3. 从 cwd 向上找(不跨 `$HOME`),首个含 `soul.md` 或 `souls/` 的祖先即 studio root
+4. 否则(初始化场景)→ cwd 即 studio root,新文件创建在此
+
+## 用户工作室目录布局
 
 ```
-<studio root>/                     ← resolved per rules above (e.g., ~/cortex/aaa)
-  ├── style_spec.md                ← YOUR style rulebook (output of style-forge)
-  ├── author_profile/
-  │   ├── identity.md              ← who you are
-  │   ├── experiences.md           ← life stories (numbered entries)
-  │   ├── opinions.md              ← positions you've publicly taken
-  │   └── refs.md                  ← people, books, games you often cite
-  ├── analyzed_authors/            ← analyzed reference authors
-  │   ├── catblade/
-  │   │   ├── style_spec.md        ← catblade's analyzed spec
-  │   │   └── articles/            ← catblade's source articles
-  │   └── [another_author]/
-  │       ├── style_spec.md
-  │       └── articles/
-  ├── drafts/                      ← output directory
-  │   ├── YYYY-MM-DD_<slug>.md     ← final articles
-  │   └── _brainstorm/             ← brainstorm artifacts (feeds /write)
-  └── illustrate_config.md         ← (optional) image gen provider settings
+<studio root>/
+├── soul.md                       ← 当前在用的 soul
+├── form.md                       ← 当前在用的 form
+├── playbook.md                   ← 你的打法集合
+├── profile/                      ← 素材库
+│   ├── identity.md
+│   ├── experiences.md
+│   ├── opinions.md
+│   └── refs.md
+├── library/                      ← 用户自拆的参考(可选)
+│   ├── souls/
+│   ├── forms/
+│   └── playbooks/
+├── drafts/
+│   ├── YYYY-MM-DD-<slug>.md      ← 成品
+│   └── _brainstorm/              ← 中间骨架
+└── illustrate_config.md          ← (可选)配图设置
 ```
 
-Note: this is a flat layout; there is **no** `studio/` wrapper subdirectory. The studio root is itself the working folder.
+## 命令文件位置
 
-## First-Time Setup
+| 命令 | 加载文件 |
+|---|---|
+| `/ghostink setup` | `commands/setup.md` |
+| `/ghostink write` | `commands/write.md` |
+| `/ghostink library` | `commands/library.md` |
+| `/ghostink check` | `commands/check.md`(thin wrapper → `_internal/form-check.md`) |
+| `/ghostink deai` | `commands/deai.md`(thin wrapper → `_internal/deai-pass.md`) |
+| `/ghostink illustrate` | `commands/illustrate.md` |
 
-1. Pick (or create) a directory to be your studio root — e.g., `~/writing/my-blog`. Either `cd` there before running commands, or set `GHOSTINK_STUDIO`.
-2. Create `analyzed_authors/[author]/articles/` for each reference author; put 20+ of their articles in each.
-3. Run `/ghostink style-init [author]` for each reference to analyze their DNA + style.
-4. Run `/ghostink style-forge` to create YOUR spec from references + your own identity.
-5. Run `/ghostink profile-init` to seed `author_profile/` interactively (identity, experiences, opinions, refs).
-6. Start writing with `/ghostink brainstorm` (for fuzzy ideas) or `/ghostink write` (for clear ones).
+`commands/_internal/` 下的子命令由主命令调用,不直接暴露给用户。
 
-For single-reference use, you can skip step 4 — `style-init` can write directly to `style_spec.md` if you're emulating rather than forging.
+## 语言
 
-## Command Details
+ghostink 主要服务中文创作者。命令文档、库内容(soul/form/playbook 正文)使用中文,关键术语锚点(soul/form/playbook/profile/skeleton)保留英文。frontmatter 字段名(`type:`、`compat_form:` 等)必须英文。
 
-Each command loads its detailed instructions from the `commands/` directory within this skill. When a command is invoked, read the corresponding file:
+国际用户的入口在 `README.md`(英文简介 + 指向 `README_CN.md`)。
 
-- `/ghostink brainstorm` → read `commands/brainstorm.md`
-- `/ghostink write` → read `commands/write.md`
-- `/ghostink check` → read `commands/check.md`
-- `/ghostink deai` → read `commands/deai.md`
-- `/ghostink illustrate` → read `commands/illustrate.md`
-- `/ghostink style-init` → read `commands/style-init.md`
-- `/ghostink style-forge` → read `commands/style-forge.md`
-- `/ghostink style-evolve` → read `commands/style-evolve.md`
-- `/ghostink profile-init` → read `commands/profile-init.md`
+## 从旧版迁移
 
-## Language
+如使用过含 `style-init` / `style-forge` 等命令的旧版本:
 
-Ghostink works in any language. The style spec, prompts, and output language are determined by the reference articles provided during `/ghostink style-init`. If reference articles are in Chinese, the spec and output will be in Chinese. If in English, everything will be in English.
+1. 重新跑 `/ghostink setup` 是最简方式(自动产出新版三件套)
+2. 旧 `analyzed_authors/` → 新 `library/`(目录改名 + 文件按新 schema 拆分)
+3. 旧 `author_profile/` → `profile/`(直接 mv)
 
-Respond to the user in the same language they use.
+## 设计文档
+
+完整架构与决策见 `DESIGN.md`,任务清单见 `tasks/`。

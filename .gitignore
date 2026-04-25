@@ -1,12 +1,23 @@
 # User data generated when using ghostink — NEVER commit to the source repo.
 # Leading slash ensures these patterns match only at the repo root, so
 # examples/ and templates/ under the source repo are unaffected.
+
+# v2 (current architecture)
+/soul.md
+/souls/
+/form.md
+/playbook.md
+/profile/
+/library/
+/drafts/
+/.ghostink_backup/
+/illustrate_config.md
+
+# v1 (legacy, kept for users migrating from old version)
 /style_spec.md
 /style_init_log.md
 /author_profile/
-/drafts/
 /analyzed_authors/
-/illustrate_config.md
 
 # macOS
 .DS_Store
