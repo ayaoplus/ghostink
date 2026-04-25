@@ -1,200 +1,239 @@
 # /ghostink write
 
-The main creation workflow. Guides the user through a multi-step process from idea to publishable article.
+写一篇文章的主路径。从主题到可发布文稿,内部分阶段引导。
 
-## Prerequisites
+## 用法
 
-Before starting, verify these files exist:
-- `style_spec.md` — if missing, tell the user to run `/ghostink style-init` first
-- `author_profile/identity.md` — if missing, proceed but warn that narrative grounding will be limited
+```
+/ghostink write [topic]
+/ghostink write "AI 编程对初级程序员"
+/ghostink write --material ./refs/         # 提供素材文档夹
+/ghostink write --skeleton ./drafts/_brainstorm/2026-04-24-xxx.md   # 基于已有 skeleton
+```
 
-## Step 1: Define Topic & Type
+## 总体流程
 
-### Step 1a: Check for brainstorm artifacts (before asking anything)
+```
+Step 0  输入解析 + studio 完整性检查
+Step 1  选 playbook
+Step 2  brainstorm → skeleton (调 _internal/brainstorm.md)
+Step 3  draft (调 _internal/draft.md)
+Step 4  form-check (调 _internal/form-check.md,出报告)
+Step 5  deai-pass (调 _internal/deai-pass.md,出报告)
+Step 6  illustrate (可选,调 commands/illustrate.md)
+Step 7  platform-output
+Step 8  profile 自动追加
+```
 
-Silently scan `drafts/_brainstorm/` for `.md` files. If the directory exists and contains files:
+每步之间有"用户确认"检查点,避免黑盒。
 
-1. List the most recent 3 files (by filename date, newest first)
-2. For each, read the YAML frontmatter to extract `topic`, `article_type`, and `status`
-3. Present them via AskUserQuestion:
+---
 
-   > 我看到你之前跑过 /brainstorm。要不要基于其中一个直接写稿？
-   >
-   > - A) 基于最近的：`YYYY-MM-DD_<slug>` — <topic> · <article_type>
-   > - B) 基于上一个：`YYYY-MM-DD_<slug>` — <topic> · <article_type>
-   > - C) 基于更早的：`YYYY-MM-DD_<slug>` — <topic> · <article_type>
-   > - D) 不基于，从零开始（走完整流程）
-   >
-   > 选 A/B/C 会跳过主题讨论，直接进入大纲确认。
+## Step 0 — 输入解析
 
-4. If user picks A/B/C (brainstorm-based path):
-   - Read the selected file in full
-   - Parse sections: `核心判断`、`差异化切入`、`可用素材`、`大纲`
-   - Echo back in 2-3 sentences: "你在 brainstorm 里定的是 [article_type]，核心判断是 [核心判断]，基于 [素材列表]。我直接按那份大纲走。"
-   - **Skip to Step 2's outline-presentation phase** — use the brainstorm file's 大纲 section as the outline, DO NOT regenerate. Ask only: "这个大纲直接用，还是有要改的？"
-   - If user confirms → proceed to Step 3 (Write Draft) using article_type from frontmatter
-   - If user wants changes → revise the outline in place, re-present, then Step 3
+1. 解析命令行:
+   - `topic`:主题字符串(可选,缺省走 brainstorm Branch C "我不知道写啥")
+   - `--material <dir>`:素材文档夹路径(可选)
+   - `--skeleton <file>`:基于已有 skeleton 直接进 Step 3(可选)
 
-5. If user picks D (or the directory doesn't exist / is empty):
-   - Continue to Step 1b below (the original flow)
+2. 按 SKILL.md Studio Discovery 规则解析 studio root
 
-### Step 1b: Ask for topic (when no brainstorm basis)
+3. 完整性检查:
+   - 缺 `soul.md` → 提示"先跑 /ghostink setup",停
+   - 缺 `form.md` → 提示"用 /ghostink library pick form <name> 选一个,或跑 setup",停
+   - 缺 `playbook.md` → 提示先建 playbook,停
+   - 缺 `profile/identity.md` → 警告但继续("生成的文章可能缺少个人化细节")
 
-Ask the user:
+4. 如果 `--skeleton` 指定:
+   - Read 该文件,提取 frontmatter(topic / play / status)
+   - 跳到 Step 3 直接 draft
 
-> What do you want to write about? And how developed is your idea — do you have a clear outline already, or just a rough direction?
+---
+
+## Step 1 — 选 playbook
+
+加载 `playbook.md`,提取所有 plays。
+
+### 1.1 主题特征预判(自动)
+
+基于 topic 字符串特征推荐一个 play(打分排序):
+- 含日期 / "今天" / "本周" → 日报型
+- 含具体事件名 / 新闻关键词 → 热点评论型
+- 含"如何 / 怎么做 / 教你" → 教程型
+- 含个人代词 / 时间副词 → 主题叙事型
+- 否则 → 杂文型 或 干货长论型(看长度暗示)
+
+### 1.2 AskUserQuestion 让用户确认
+
+> 这个话题(<topic>)我倾向 **<推荐 play>**,因为 <一句理由>。
 >
-> （如果想法还模糊，建议先跑 /ghostink brainstorm 做一轮结构化讨论。）
+> 你的 playbook 还有:
+> - A) <推荐 play>(推荐)
+> - B) <其他 play 1>
+> - C) <其他 play 2>
+> - D) 我想用一个新 play(走 build-playbook 添加)
 
-### Mode A: Structured Input (user has a clear outline)
+用户选了 → 记下 `chosen_play`。
 
-The user provides:
-- Article type (prompt them to choose from the types defined in their `style_spec.md`)
-- Core argument / thesis in a few sentences
-- Key points or material
-- (Optional) Personal experiences to weave in
+---
 
-After receiving input:
-1. Confirm your understanding in 2-3 sentences
-2. Suggest 2-3 structural improvements (e.g., "Consider adding a counter-example in section 2?" or "This anecdote would work well as the opening hook")
-3. Wait for user confirmation before proceeding
+## Step 2 — brainstorm → skeleton
 
-### Mode B: Exploratory Input (user has a rough direction)
+调用 `commands/_internal/brainstorm.md`。
 
-The user provides a vague topic, maybe a reference link or a few scattered thoughts.
+输入:
+- topic
+- soul.md(读 0.x 节用于挑战框架)
+- chosen_play(决定结构模板)
+- profile/(选素材的弹药库)
+- material(若有)
 
-Guide them through Socratic questioning (3-5 rounds max):
-1. What's your attitude toward this topic? (positive / negative / complex)
-2. Who is your audience?
-3. Do you have any personal experience related to this?
-4. What's the one thing you want readers to remember? Say it in one sentence.
-5. (Adapt follow-up questions based on answers)
+输出:`drafts/_brainstorm/YYYY-MM-DD-<slug>.md`,含:
+- 核心判断
+- 差异化切入
+- 可用素材
+- 大纲(按 chosen_play 模板填)
+- 对话摘要
 
-After convergence, summarize:
-> Based on our discussion, I understand you want to express [X]. I recommend article type [Y]. The core argument is [Z]. Shall I proceed with the outline?
+中间和用户的对话:
+- 锐化判断(对照 soul 的 0.4 信念)
+- 挑战框架(soul 0.2 的人设悖论作为视角武器)
+- 选差异化角度(profile/opinions 中的 differentiator 优先)
+- 选素材(profile/experiences 中相关条目)
+- 出大纲
 
-Wait for confirmation.
+完成后呈现给用户:"这个骨架你满意吗?要改哪里?"
+用户确认或具体修改后,进 Step 3。
 
-## Step 2: Generate Outline
+**回退入口**:如果 Step 0 检测到 `--skeleton` 参数,跳过本步直接进 Step 3。
 
-Read the article type template from `style_spec.md` (Section 5 or equivalent).
+---
 
-Generate a structural outline following the template:
-- List each section/block with 1-2 sentence descriptions
-- Mark where "……" separators go
-- Indicate which personal experiences (if any) will be woven in — cross-reference `author_profile/experiences.md` if available
-- Suggest where key data points or examples should appear
+## Step 3 — draft
 
-Present the outline to the user. Wait for approval or revision requests.
+调用 `commands/_internal/draft.md`。
 
-## Step 3: Write Draft
+输入:
+- skeleton(从 Step 2 或 --skeleton 来)
+- form.md(写作主依据:句式、词汇、开头结尾)
+- profile/identity.md(背景信息)
 
-Load these from `style_spec.md`:
-- Layer 1 (Voice Core): sentence patterns, vocabulary fingerprint, prohibitions, emotional rules
-- Layer 2 (Domain Adaptation): terminology handling, data presentation
-- The specific article type template being used
+输出:草稿文本,**不写文件**,先给用户看。
 
-Also load `author_profile/` files as background context (identity.md at minimum).
+写作约束:
+- 严格按 skeleton 的大纲走
+- 严格遵守 form 的 must_use / never_use / forbidden 词表
+- 严格遵守 form 的 prohibition list
+- 长度按 chosen_play 的 length 范围
 
-Write the full article following:
-1. The approved outline from Step 2
-2. All style rules from the spec
-3. The vocabulary fingerprint — use the "must use" words, avoid the "never use" words
+呈现:
+> 这是初稿:
+>
+> [全文]
+>
+> 接下来自动跑 form-check 和 deai-pass,我会出报告。
 
-Output the draft to the user. Do NOT write to file yet — the user needs to review first.
+---
 
-## Step 4: Auto-Review
+## Step 4 — form-check(自动出报告)
 
-Immediately after presenting the draft, run the review checklist from the style spec (Section 10 or equivalent). For each item, report pass/fail:
+调用 `commands/_internal/form-check.md`。
 
-```
-Style Audit Report
-==================
-[PASS] Opening within 5 sentences
-[PASS] "……" separators present
-[PASS] 2+ explicit personal judgments
-[FAIL] Found "令人" in paragraph 3 — should be "让人"
-[PASS] Ends with appropriate closing
-[WARN] No self-deprecation detected — consider adding
-...
-```
+输入:
+- 当前草稿
+- form.md
+- chosen_play(用于结构合规)
 
-Also scan for:
-- Any words from the "never use" list
-- Consecutive formal connectors that should be colloquial (e.g., "因此" → "所以")
-- Structural violations (missing separator, wrong section order)
+输出:报告含:
+- Score 总分(/100)
+- Structure 检查(开头/分隔/类型合规/收尾)
+- Vocabulary 扫描(逐行列出 never_use 命中)
+- Voice 检查(个人判断数 / 自嘲存在 / 加粗使用)
+- Prohibition 扫描(成语堆叠 / 排比 / 教化等)
 
-Present the report to the user.
+**不强制修复**。报告呈现后:
 
-## Step 5: Revise
+> 你想怎么处理?
+> - A) 全部修(我自动按报告修一遍)
+> - B) 选择性修(指定哪些条要改)
+> - C) 跳过,这版我接受
 
-Based on the audit report and user feedback:
+用户选 A → 自动修复并显示修订版。
+选 B → 让用户具体说。
+选 C → 进 Step 5。
 
-If the user says "fix it" or similar → automatically fix all FAIL items and present the revised draft.
+---
 
-If the user gives specific instructions (e.g., "paragraph 2 doesn't sound like me, more casual") → revise accordingly.
+## Step 5 — deai-pass(自动出报告,**不阈值通过**)
 
-If the user approves the draft → proceed to Step 6.
+调用 `commands/_internal/deai-pass.md`。
 
-Multiple revision rounds are normal. Loop Steps 4-5 until the user is satisfied.
+输出报告含:
+- 9 条规则各自的 PASS/FAIL/WARN
+- 总分(参考用,不强制阈值)
+- 具体行号 + 建议改写
 
-## Step 5.5: De-AI Review
+**不强制修复**,处理同 Step 4:
 
-After the draft passes style review and user revisions, run the de-AI audit automatically. Load the full rulebook from `commands/deai.md` and execute all 9 rules.
+> 你想怎么处理?
+> - A) 全部修
+> - B) 选择性修
+> - C) 跳过,我决定保留这版
 
-If the de-AI score is **below 70**: flag the issues and offer to auto-fix before proceeding.
-If the score is **70-85**: show the report, offer optional fixes, let the user decide.
-If the score is **above 85**: briefly note the score and proceed.
+---
 
-This is a non-skippable step. Every draft must pass through de-AI review.
+## Step 6 — illustrate(可选)
 
-## Step 5.6: Illustrate (Optional)
+> 要不要给文章配图?
+> - A) 要(走 illustrate 流程)
+> - B) 不要,直接进发布步骤
 
-After de-AI review, ask:
+如果 A → 调用 `commands/illustrate.md`,完成后回 Step 7。
 
-> Want to add illustrations to this article? (y/n)
+---
 
-If yes, run the illustration workflow from `commands/illustrate.md` on the current draft.
+## Step 7 — platform-output
 
-If `illustrate_config.md` doesn't exist, guide the user through first-time setup (choose provider, model, API key).
+> 这篇要发到哪?(应用对应平台格式)
+> - A) 公众号(rich formatting,保留 ** 和 ……)
+> - B) X / Twitter 长文(去 ** 标记,…… 转空行,字数控制)
+> - C) X / Twitter thread(拆成 280 字推文 + 编号)
+> - D) 微博(去 markdown,纯文本)
+> - E) 纯 markdown(原样输出)
+> - F) 其他(自由输入)
 
-If the user declines, skip to Step 6.
+应用对应格式规则,写到 `drafts/YYYY-MM-DD-<slug>.md`。
 
-## Step 6: Format & Output
+同时生成 5 个候选标题,按 form / soul 的 emotional_contract 选标题风格。
 
-Ask the user:
+---
 
-> Where will this be published? Options:
-> 1. WeChat Official Account (rich formatting)
-> 2. X / Twitter long-form article
-> 3. X / Twitter thread
-> 4. Plain markdown
-> 5. Other (specify)
+## Step 8 — profile 自动追加
 
-Apply Layer 3 (Platform Adaptation) rules from the style spec. If no Layer 3 exists for the chosen platform, apply sensible defaults:
+扫描本次会话:
+- Step 2 brainstorm 中用户提到的新经历(不在 experiences.md 里的)
+- Step 2 中用户表达的新观点(不在 opinions.md 里的)
+- Step 5/6 反馈中用户透露的新偏好
 
-**WeChat**: Keep `**bold**` markers, keep "……" separators, add `!` image placeholders where appropriate.
+如有 ≥1 条:
 
-**X long-form**: Remove bold markers (X Articles don't support markdown bold), convert "……" to blank lines, keep paragraph structure intact, ensure under 4000 characters if possible.
+> 我注意到这次会话里出现了一些新素材:
+> - <新经历 1>
+> - <新观点 2>
+>
+> 加进 profile 吗?
+> - A) 全加
+> - B) 选哪些
+> - C) 不加
 
-**X thread**: Split into individual tweets. Each tweet must be independently readable. First tweet is the hook. Last tweet is the conclusion. Add numbering (1/N format). Each tweet under 280 characters.
+用户选 A/B → 按 E### / O### 编号格式追加到对应 profile 文件。
 
-**Plain markdown**: Output as-is.
+---
 
-Also generate 5 candidate titles following the title rules in the style spec (if defined) or these defaults:
-- Keep under 8 characters if possible
-- Colloquial, emotional, or suspenseful
-- No clickbait cliches
+## 实现备注
 
-Write the final article to `drafts/YYYY-MM-DD_title.md`.
-
-## Step 7: Deposit New Experiences
-
-Silently scan the user's input from Step 1 (and any material provided during the session) for personal experiences that aren't already in `author_profile/experiences.md`.
-
-If new experiences are found:
-1. Extract them into numbered entries (following the existing format in experiences.md)
-2. Show the user: "I noticed some new personal details from this session. Shall I add these to your author profile?"
-3. If approved, append to `author_profile/experiences.md`
-
-This keeps the author profile growing naturally with each writing session.
+- form-check 和 deai-pass **只出报告,不阈值通过**——决定权在用户
+- 中途用户说"重写""换个角度""不要这段"时,回到对应 step 的具体子步,不要清空重做整篇
+- 不要每步都问 AskUserQuestion 轰炸,只在分叉点和"用户确认"检查点问
+- 中文叙述,关键术语保留英文
+- 写完 Step 7 之前不写最终文件,只用 stdout 呈现草稿
