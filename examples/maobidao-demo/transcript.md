@@ -56,12 +56,12 @@
 > - 三毛(sanmao):抒情 + 陪伴 — 散文 / 长情叙事
 > - 王小波(wangxiaobo):思辨 + 辛辣 — 杂文 / 思辨长文
 > - 韩寒(hanhan):辛辣 + 思辨 — 博客评论 / 短论
-> - **猫笔刀**(catblade):陪伴 — 日报型公众号 / 财经陪伴
+> - **猫笔刀**(maobidao):陪伴 — 日报型公众号 / 财经陪伴
 > - 李笑来(lixiaolai):布道 + 教程 — 概念布道 / 框架教学
 
 **User:** 猫笔刀。我喜欢他不催不教育的写法,虽然我写的是 AI 不是财经
 
-**Assistant:** OK,catblade 整套 — soul / form / playbook 三件套都从他这复制。
+**Assistant:** OK,maobidao 整套 — soul / form / playbook 三件套都从他这复制。
 不过你领域不一样,Step 3-4 我会用对话给 soul 加 AI 领域的差异化补丁。
 
 ### Step 3 — 锐化 profile
@@ -82,7 +82,7 @@
 
 ### Step 4 — 产出 soul
 
-**Assistant:** 我把 catblade 的 soul 复制下来,加你的差异化补丁:
+**Assistant:** 我把 maobidao 的 soul 复制下来,加你的差异化补丁:
 - 0.4 信念加入你的"AI 让初级程序员更值钱"作为新一条
 - 0.5 信任机制中的"公开亏损"改成"公开自己实操 AI 工具的失败案例"
 - 0.6 情感锚点改为"AI 焦虑时的不慌声音"
@@ -94,32 +94,32 @@
 ### Step 5 — 选 form
 
 **Assistant:** 给你的 soul(陪伴派 + 思辨派)选个 form:
-> - A) [推荐 - 同源] catblade form(口语化)
+> - A) [推荐 - 同源] maobidao form(口语化)
 > - B) [兼容] hanhan form(短句轰炸 + 反讽)— 更辛辣
 > - C) 看不兼容选项
 
 **User:** A,我就要猫笔刀那种聊天感
 
-✓ form.md = catblade form
+✓ form.md = maobidao form
 
 ### Step 6 — 建 playbook
 
 **Assistant:** 基于你的 soul,推荐的打法:
-> ☑ 日报型(catblade 含)— 高频例行
-> ☑ 热点评论型(catblade)— 大事件评论
-> ☑ 主题叙事型(catblade)— 个人回忆长文
+> ☑ 日报型(maobidao 含)— 高频例行
+> ☑ 热点评论型(maobidao)— 大事件评论
+> ☑ 主题叙事型(maobidao)— 个人回忆长文
 
 **User:** 全要
 
-✓ playbook.md = catblade 三个 plays
+✓ playbook.md = maobidao 三个 plays
 
 ### Step 7 — 完成
 
 ```
 ✓ Setup 完成
 
-  Soul:  catblade-fork (陪伴派 + 思辨派)
-  Form:  catblade (口语化)
+  Soul:  maobidao-fork (陪伴派 + 思辨派)
+  Form:  maobidao (口语化)
   Playbook: 日报型 / 热点评论型 / 主题叙事型
   Profile:
     - identity.md (1 条)

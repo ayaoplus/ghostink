@@ -7,7 +7,7 @@ must_use / never_use 词表精度比其他作家更高。
 
 ---
 type: form
-name: catblade
+name: maobidao
 display_name: 猫笔刀
 version: 1.0-draft
 source: ai-distilled

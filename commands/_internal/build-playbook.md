@@ -34,12 +34,12 @@
 基于你的 soul(<factions>),推荐的打法:
 
 兼容(推荐):
-  ☑ 日报型(catblade 的 playbook 含此 play)
+  ☑ 日报型(maobidao 的 playbook 含此 play)
      trigger: 工作日例行,当天有大盘行情
      emotional_baseline: 日常陪伴,克制
-  ☑ 主题叙事型(catblade)
+  ☑ 主题叙事型(maobidao)
      trigger: 想写一段完整的回忆/经历
-  ☑ 热点评论型(catblade)
+  ☑ 热点评论型(maobidao)
      trigger: 大事件深度评论
 
 不太兼容(可选):

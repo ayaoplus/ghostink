@@ -13,7 +13,7 @@
 3. /ghostink library          换文笔、加新参考、看库存
 ```
 
-新人按这 3 步即可上手。完整示例见 `examples/catblade-demo/`。
+新人按这 3 步即可上手。完整示例见 `examples/maobidao-demo/`。
 
 ## 五个核心概念
 

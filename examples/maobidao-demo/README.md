@@ -6,13 +6,13 @@
 ## 目录结构
 
 ```
-catblade-demo/
+maobidao-demo/
 ├── README.md          ← 本文件
 ├── transcript.md      ← setup + write 关键对话脚本
 ├── notes.md           ← 跑 demo 时的反思与改进建议
 └── studio/            ← 模拟的用户工作室(setup 后的状态)
-    ├── soul.md        ← catblade soul + 用户差异化补丁(领域: AI)
-    ├── form.md        ← catblade form 直接复用
+    ├── soul.md        ← maobidao soul + 用户差异化补丁(领域: AI)
+    ├── form.md        ← maobidao form 直接复用
     ├── playbook.md    ← 选了日报型 + 热点评论型 + 主题叙事型
     ├── profile/
     │   ├── identity.md       ← 用户的平台 + 读者画像
@@ -40,9 +40,9 @@ cd ~/test-studio
 
 # 2. 跑 setup,选猫笔刀整套
 /ghostink setup
-# → Step 2 选 A,选 catblade
+# → Step 2 选 A,选 maobidao
 # → Step 3 用 demo profile 的内容回答(或自己的)
-# → Step 5 选 catblade form
+# → Step 5 选 maobidao form
 
 # 3. 写一篇
 /ghostink write "AI 编程对初级程序员的影响"

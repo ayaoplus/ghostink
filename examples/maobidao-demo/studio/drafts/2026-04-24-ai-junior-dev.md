@@ -2,8 +2,8 @@
 date: 2026-04-24
 title: AI 把初级程序员分成了两类
 play: 热点评论型
-form: catblade
-soul: catblade-fork
+form: maobidao
+soul: maobidao-fork
 length: 1820
 status: published-ready
 ---

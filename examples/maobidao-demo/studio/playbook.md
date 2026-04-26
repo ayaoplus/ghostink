@@ -6,7 +6,7 @@ Playbook: 猫笔刀 v1.0-draft
 
 ---
 type: playbook
-name: catblade
+name: maobidao
 display_name: 猫笔刀
 version: 1.0-draft
 source: ai-distilled

@@ -73,17 +73,17 @@ draft → form check → deai 报告 → 平台输出。
 | `sanmao` | 三毛 | 抒情派 + 陪伴派 | 个人散文 / 长情叙事 |
 | `wangxiaobo` | 王小波 | 思辨派 + 辛辣派 | 杂文 / 思辨长文 |
 | `hanhan` | 韩寒 | 辛辣派 + 思辨派 | 博客评论 / 短论 |
-| `catblade` | 猫笔刀 | 陪伴派 + 思辨派 | 日报型公众号 / 财经陪伴 |
+| `maobidao` | 猫笔刀 | 陪伴派 + 思辨派 | 日报型公众号 / 财经陪伴 |
 | `lixiaolai` | 李笑来 | 布道派 + 教程派 | 概念布道 / 框架教学 |
 
 新人 setup 时可以直接选一套抄起步,以后自然演化。
 
 ## 端到端示例
 
-完整示例见 `examples/catblade-demo/`,包括:
+完整示例见 `examples/maobidao-demo/`,包括:
 - setup + write 全流程对话脚本(`transcript.md`)
 - 模拟产出的完整 studio(`studio/`)
-- 一篇 1820 字的 catblade 风格成稿(`drafts/2026-04-24-ai-junior-dev.md`)
+- 一篇 1820 字的 maobidao 风格成稿(`drafts/2026-04-24-ai-junior-dev.md`)
 - 跑 demo 时的反思(`notes.md`)
 
 ## 边角入口

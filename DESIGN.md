@@ -384,7 +384,7 @@ ghostink/
 │       │   ├── sanmao.md           三毛
 │       │   ├── wangxiaobo.md       王小波
 │       │   ├── hanhan.md           韩寒
-│       │   ├── catblade.md         猫笔刀
+│       │   ├── maobidao.md         猫笔刀
 │       │   └── lixiaolai.md        李笑来
 │       ├── forms/
 │       │   └── (同名 5 个)
@@ -557,7 +557,7 @@ description: |
 ```yaml
 ---
 type: soul
-name: catblade
+name: maobidao
 version: 1.0
 source: built-in
 compat_form:    [口语化, 短句轰炸]
@@ -657,7 +657,7 @@ description: 王小波的反讽 + 理性文笔
 ```yaml
 ---
 type: playbook
-name: catblade
+name: maobidao
 version: 1.0
 source: built-in
 plays: [日报型, 热点评论型, 主题叙事型]

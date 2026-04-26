@@ -184,7 +184,7 @@ Step 2)。
 
 - A 生活散文 → 三毛(sanmao)
 - B 评论 / 思辨 → 王小波(wangxiaobo)、韩寒(hanhan)
-- C 陪伴 / 日常 → 猫笔刀(catblade)
+- C 陪伴 / 日常 → 猫笔刀(maobidao)
 - D 知识 / 教程 → 李笑来(lixiaolai)
 - E 混合 / 其他 → 不预排序,按字母顺序展示全部
 
@@ -195,7 +195,7 @@ Step 2)。
 > - **三毛**(sanmao):抒情派 + 陪伴派 — 个人散文 / 长情叙事
 > - **王小波**(wangxiaobo):思辨派 + 辛辣派 — 杂文 / 思辨长文
 > - **韩寒**(hanhan):辛辣派 + 思辨派 — 博客评论 / 短论
-> - **猫笔刀**(catblade):陪伴派 — 日报型公众号 / 财经陪伴
+> - **猫笔刀**(maobidao):陪伴派 — 日报型公众号 / 财经陪伴
 > - **李笑来**(lixiaolai):布道派 + 教程派 — 概念布道 / 框架教学
 
 用户选一个 → 记下 `chosen_author` → 进入 Step 3。
@@ -375,8 +375,8 @@ forge-soul 内部走 6 节对话生成,产出后写入 `soul.md`。
 ```
 基于你的 soul(<factions>),推荐的打法:
 
-  ☑ 日报型(catblade 的 playbook 含此 play)— 高频例行写作
-  ☑ 热点评论型(catblade)— 大事件评论
+  ☑ 日报型(maobidao 的 playbook 含此 play)— 高频例行写作
+  ☑ 热点评论型(maobidao)— 大事件评论
   ☐ 教程型(lixiaolai)— ⚠ 与你的 soul 偏离较大
 ```
 

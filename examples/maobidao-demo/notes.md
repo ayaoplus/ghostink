@@ -43,7 +43,7 @@ Step 7 自动生成 5 个候选标题,跑下来发现质量参差。
 
 ## 内置库观察
 
-### catblade 三件套精度
+### maobidao 三件套精度
 
 整体可用,作为 v1.0-draft 够用。但写 demo 文章时发现:
 
@@ -55,9 +55,9 @@ Step 7 自动生成 5 个候选标题,跑下来发现质量参差。
 
 ### deai 报告对猫笔刀风格的误判
 
-deai-pass 把 catblade form 的"短句堆叠"特征几次标为"句式重复"——其实那是这个 form 故意的节奏。
+deai-pass 把 maobidao form 的"短句堆叠"特征几次标为"句式重复"——其实那是这个 form 故意的节奏。
 
-**改进方向**:deai-pass 的 Rule 3(句式重复)在 form.factions 含"短句轰炸"时,灵敏度应自动调低。当前 _internal/deai-pass.md 已经提到这个机制,但 catblade 的 factions 是"口语化"不是"短句轰炸",规则没触发。
+**改进方向**:deai-pass 的 Rule 3(句式重复)在 form.factions 含"短句轰炸"时,灵敏度应自动调低。当前 _internal/deai-pass.md 已经提到这个机制,但 maobidao 的 factions 是"口语化"不是"短句轰炸",规则没触发。
 
 **修法**:扩展规则的 form 联动判断——不只看 factions,也看 Sentence Rhythm 的具体数值(短句比例 ≥45% 时降低 Rule 3 灵敏度)。
 

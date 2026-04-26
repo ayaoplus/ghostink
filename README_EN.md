@@ -36,7 +36,7 @@ Five iconic Chinese authors come pre-distilled with complete trios:
 - **三毛 (sanmao)** — lyrical narrator
 - **王小波 (wangxiaobo)** — ironic essayist
 - **韩寒 (hanhan)** — short-sentence blogger
-- **猫笔刀 (catblade)** — companion-style finance writer
+- **猫笔刀 (maobidao)** — companion-style finance writer
 - **李笑来 (lixiaolai)** — concept evangelist
 
 ## Status
@@ -49,7 +49,7 @@ Five iconic Chinese authors come pre-distilled with complete trios:
 - [README.md](./README.md) — full docs (Chinese, primary)
 - [DESIGN.md](./DESIGN.md) — architecture and decisions
 - [SKILL.md](./SKILL.md) — Claude-loaded entry point
-- [examples/catblade-demo](./examples/catblade-demo) — end-to-end demo
+- [examples/maobidao-demo](./examples/maobidao-demo) — end-to-end demo
 
 ## License
 

@@ -51,7 +51,7 @@ Soul Library
 ============
 
 Name        Display    Version     Source         Factions          Status        Description
-catblade    猫笔刀     1.0-draft⚠ built-in       陪伴派,思辨派    ★ 在用         有钱人的陪伴式财经
+maobidao    猫笔刀     1.0-draft⚠ built-in       陪伴派,思辨派    ★ 在用         有钱人的陪伴式财经
 sanmao      三毛       1.0-draft⚠ built-in       抒情派,陪伴派    ✓ 兼容         流浪叙事 + 浓情
 wangxiaobo  王小波     1.0-draft⚠ built-in       思辨派,辛辣派    ⚠ 不兼容       反讽 + 理性
                                                                                   (用 --include-incompat 显示)
@@ -238,7 +238,7 @@ Playbook Library
 ⚠ 兼容性警告
 
 你想把 form 换成 [王小波]。
-当前 soul 是 [陪伴派, 思辨派](来自 catblade)。
+当前 soul 是 [陪伴派, 思辨派](来自 maobidao)。
 王小波 form 标记 incompat_soul: [陪伴派, 抒情派]
 
 可能问题:
@@ -255,8 +255,8 @@ Playbook Library
 
 | 场景 | 当前 soul | pick form | 期望 |
 |---|---|---|---|
-| 同源 | catblade | catblade | 安静通过(同源套件) |
-| 兼容 | catblade | hanhan | 走兼容性比对,可能中性或不兼容(看 factions) |
+| 同源 | maobidao | maobidao | 安静通过(同源套件) |
+| 兼容 | maobidao | hanhan | 走兼容性比对,可能中性或不兼容(看 factions) |
 | 不兼容 | sanmao(抒情派) | wangxiaobo(反讽) | 弹警告 A/B/C |
 
 ---
