@@ -61,7 +61,7 @@ draft → form check → deai 报告 → 平台输出。
 库管理。子命令:
 - `library list` — 列出内置 + 自拆的 soul/form/playbook
 - `library info [name]` — 看某个的详情
-- `library analyze [author]` — 拆一个新参考
+- `library distill [author]` — 提炼一个新参考(默认 deep 模式,加 `--quick` 走 5+ 篇轻量)
 - `library pick {soul/form/playbook} [name]` — 切换在用的
 
 ## 内置作家库
@@ -139,7 +139,7 @@ Ghostink 通过派系标签管理 soul/form/playbook 之间的兼容性。完整
 
 - 多 Soul 完整支持(同时绑定不同平台,如公众号 vs X 用不同灵魂)
 - `evolve / refresh` 从已发文章反向学习
-- 内置库 v2(用户准备 30+ 篇代表作跑 `library analyze` 重训)
+- 内置库 v2(用户准备 30+ 篇代表作跑 `library distill` 重训)
 - Form 库扩充(再加 5-10 位中文作家)
 
 完整设计与决策记录见 `DESIGN.md`。
