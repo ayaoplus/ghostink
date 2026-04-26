@@ -1,7 +1,15 @@
-# Catblade Demo — Ghostink 端到端示例
+# Maobidao Demo(write 流程) — Ghostink 端到端示例
 
-这是 ghostink 的端到端示例,演示从 setup 到产出一篇文章的完整流程。
-用猫笔刀的内置三件套作为起点,模拟一个想"借鉴猫笔刀风格写 AI 领域内容"的用户。
+这是 ghostink 的 **write 流程**端到端示例,演示从 setup 到产出一篇文章的完整流程。
+用猫笔刀的内置三件套(**v2.0-distilled**,基于 35 篇真实文章 distill 出的)作为
+起点,模拟一个想"借鉴猫笔刀风格写 AI 领域内容"的用户。
+
+> **注**:三件套已经升级到 2.0-distilled。**怎么 distill 出来的**见姐妹 demo:
+> `examples/maobidao-distill-demo/`(distill 流程 demo)。
+>
+> 本 demo 的 transcript.md / drafts/ 还基于 1.0-draft 三件套写的(P4-T18 时期),
+> 后续会用 2.0-distilled 重跑一遍——届时 brainstorm 应能利用更精准的
+> Reader Cognitive Model / 7 种 Play 等新维度。
 
 ## 目录结构
 

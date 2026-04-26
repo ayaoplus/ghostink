@@ -1,24 +1,25 @@
 <!--
-Soul: 猫笔刀 v2.0-phase1-extended
+Soul: 猫笔刀 v2.0-distilled
 
-⚠ distill deep 流程进行中(Phase 1.5/7 完成):
-- Phase 1: 15 篇均匀采样(2022-11 至 2025-03 全跨度)→ Soul v2.0-phase1
-- Phase 1.5: 再补 20 篇(14 非日报型 + 6 极端日报),覆盖自传 / 主题深挖 /
-  热点评论 / 生活随笔 / 年度复盘 / 极端日,共 35 篇 → Soul v2.0-phase1-extended
-  (本版),修订 5 处:加自传/年终/极端日的广谱情感、管理过失脆弱、自我暴露式
-  金句、主动情绪共鸣价值、具体背景锚点
-- Phase 2-7 进行中,form / playbook 会陆续刷新
-- Soul 已锁,除非 Phase 3 多轮 predict-then-compare 验证发现 DNA 假设违反
+distill deep 流程完成(基于 35 篇 in-context 真实文章):
+- Phase 1: 15 篇均匀采样(2022-11 至 2025-03 全跨度)
+- Phase 1.5: +20 篇覆盖非日报型 + 极端日报(共 35 篇)
+- Phase 2: Form 14 节提取(forms/maobidao.md)
+- Phase 3: in-context 自我审视(简化版,不再读新文章 — 35 篇覆盖度足够,
+  日报与非日报已 8:7 平衡;有外部 predict-compare 需求时人工补跑)
+- Phase 4: Playbook 7 种 Play 聚类 + frequency(playbooks/maobidao.md)
+- Phase 5: 词频统计(LLM 估算,见 phase5 日志)
+- Phase 6: 三件套统一升级 2.0-distilled,frontmatter + 兼容性标签 finalize
+- Phase 7: skip(文章不是用户自己写的,profile bootstrap 不适用)
 
-Phase 1 日志见 examples/maobidao-distill-demo/phase1-soul-extraction.md
-Phase 1.5 扩展日志见 examples/maobidao-distill-demo/phase1.5-soul-extension.md
+Phase 全程日志见 examples/maobidao-distill-demo/
 -->
 
 ---
 type: soul
 name: maobidao
 display_name: 猫笔刀
-version: 2.0-phase1-extended
+version: 2.0-distilled
 source: user-distilled-deep
 factions: [陪伴派, 思辨派]
 compat_form: [口语化, 短句轰炸, 反讽]
