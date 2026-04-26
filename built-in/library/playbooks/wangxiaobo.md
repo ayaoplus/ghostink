@@ -1,5 +1,5 @@
 <!--
-Playbook: 王小波 v1.0-draft
+Playbook: 王小波
 两种打法:杂文型(主)+ 干货长论型(辅)。
 -->
 
@@ -7,7 +7,6 @@ Playbook: 王小波 v1.0-draft
 type: playbook
 name: wangxiaobo
 display_name: 王小波
-version: 1.0-draft
 source: ai-distilled
 plays: [杂文型, 干货长论型]
 description: |

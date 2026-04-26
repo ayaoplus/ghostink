@@ -1,5 +1,5 @@
 <!--
-Playbook: 三毛 v1.0-draft
+Playbook: 三毛
 两种打法:主题叙事型(主)+ 杂文型(辅)。
 -->
 
@@ -7,7 +7,6 @@ Playbook: 三毛 v1.0-draft
 type: playbook
 name: sanmao
 display_name: 三毛
-version: 1.0-draft
 source: ai-distilled
 plays: [主题叙事型, 杂文型]
 description: |

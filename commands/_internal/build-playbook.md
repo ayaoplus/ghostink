@@ -13,7 +13,7 @@
 
 `[studio]/playbook.md`,按 `templates/playbook.template.md` schema:
 
-- frontmatter:type=playbook / name=<用户 slug> / version=1.0-draft / source=ai-distilled / plays=[选定的 play 名] / description
+- frontmatter:type=playbook / name=<用户 slug> / source=ai-distilled / plays=[选定的 play 名] / description
 - 每个选定的 play 完整结构:trigger / serves_value / emotional_baseline / length / material_from / structure / opening_patterns / closing_patterns
 
 ## 流程

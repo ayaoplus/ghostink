@@ -19,7 +19,6 @@ compat_form / compat_playbook / incompat_form / incompat_playbook 同理,
 type: soul
 name: <slug-英文小写>
 display_name: <中文显示名>
-version: 1.0-draft           # 1.0-draft / 1.0-quick / 2.0
 source: ai-distilled         # built-in / ai-distilled / user-distilled-quick / user-distilled-deep
 factions: []                 # 1-3 个 Soul 派系标签
 compat_form: []              # 兼容的 Form 派系

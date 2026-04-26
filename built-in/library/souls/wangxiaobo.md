@@ -1,15 +1,13 @@
 <!--
-Soul: 王小波 v1.0-draft
+Soul: 王小波
 基于 AI 训练知识 + 抽样代表作产出。
 代表作:沉默的大多数 / 我的精神家园 / 一只特立独行的猪 / 黄金时代(小说)
-后续 v2.0 将基于 30+ 篇代表作完整提取。
 -->
 
 ---
 type: soul
 name: wangxiaobo
 display_name: 王小波
-version: 1.0-draft
 source: ai-distilled
 factions: [思辨派, 辛辣派]
 compat_form: [反讽, 长句分析]

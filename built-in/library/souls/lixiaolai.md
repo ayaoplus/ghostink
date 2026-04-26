@@ -1,5 +1,5 @@
 <!--
-Soul: 李笑来 v1.0-draft
+Soul: 李笑来
 基于 AI 训练知识 + 抽样代表作产出。
 代表作:把时间当作朋友 / 七年就是一辈子 / 通往财富自由之路 / 新生
 本任务为客观提炼,不评判其个人立场。
@@ -9,7 +9,6 @@ Soul: 李笑来 v1.0-draft
 type: soul
 name: lixiaolai
 display_name: 李笑来
-version: 1.0-draft
 source: ai-distilled
 factions: [布道派, 教程派]
 compat_form: [短句轰炸, 书面化]

@@ -210,7 +210,7 @@ Step 2)。
 
 每问一个,记下 `chosen_soul` / `chosen_form` / `chosen_playbook_source`。
 
-如果用户的搭配不兼容,引用 P3-T15 的兼容性检查警告(见 `commands/library.md` pick 子命令的警告模板)。
+如果用户的搭配不兼容,套用 `commands/library.md` pick 子命令的兼容性警告模板。
 
 ### 分支 C:自拆参考
 
@@ -284,7 +284,7 @@ Step 2)。
    - 在 0.5 Trust Mechanics 节,根据 experiences.md 中的"暴露弱点"类条目调整 vulnerability 描述
    - 在 0.6 Emotional Contract 节,基于 identity.md 的读者关系调整"读者来求什么"
 4. 把 frontmatter 的 `name` 改为用户的 slug(询问 AskUserQuestion 让用户起个名)
-5. `version: 1.0-draft`,`source: ai-distilled`
+5. `source: ai-distilled`
 6. 完整显示给用户,逐节确认
 
 ### 路径 B:对话式 forge(分支 C 或 D)

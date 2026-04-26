@@ -1,5 +1,5 @@
 <!--
-Form: 韩寒(博客时代)v1.0-draft
+Form: 韩寒(博客时代)
 短句轰炸 + 反讽,适合热点评论型与杂文型。
 对象:博客时代韩寒(2006-2014),不混入电影 / 长篇小说期。
 -->
@@ -8,7 +8,6 @@ Form: 韩寒(博客时代)v1.0-draft
 type: form
 name: hanhan
 display_name: 韩寒
-version: 1.0-draft
 source: ai-distilled
 factions: [短句轰炸, 反讽]
 compat_soul: [辛辣派, 思辨派]

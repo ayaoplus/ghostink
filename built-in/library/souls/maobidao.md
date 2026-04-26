@@ -1,5 +1,5 @@
 <!--
-Soul: 猫笔刀 v2.0-distilled
+Soul: 猫笔刀
 
 distill deep 流程完成(基于 35 篇 in-context 真实文章):
 - Phase 1: 15 篇均匀采样(2022-11 至 2025-03 全跨度)
@@ -8,8 +8,8 @@ distill deep 流程完成(基于 35 篇 in-context 真实文章):
 - Phase 3: in-context 自我审视(简化版,不再读新文章 — 35 篇覆盖度足够,
   日报与非日报已 8:7 平衡;有外部 predict-compare 需求时人工补跑)
 - Phase 4: Playbook 7 种 Play 聚类 + frequency(playbooks/maobidao.md)
-- Phase 5: 词频统计(LLM 估算,见 phase5 日志)
-- Phase 6: 三件套统一升级 2.0-distilled,frontmatter + 兼容性标签 finalize
+- Phase 5: 词频统计(LLM 估算)
+- Phase 6: Finalize — frontmatter + 兼容性标签
 - Phase 7: skip(文章不是用户自己写的,profile bootstrap 不适用)
 -->
 
@@ -17,7 +17,6 @@ distill deep 流程完成(基于 35 篇 in-context 真实文章):
 type: soul
 name: maobidao
 display_name: 猫笔刀
-version: 2.0-distilled
 source: user-distilled-deep
 factions: [陪伴派, 思辨派]
 compat_form: [口语化, 短句轰炸, 反讽]

@@ -19,7 +19,6 @@ compat_soul / compat_playbook / incompat_soul 同理,从对应词表选。
 type: form
 name: <slug-英文小写>
 display_name: <中文显示名>
-version: 1.0-draft
 source: ai-distilled
 factions: []                 # 1-3 个 Form 派系标签
 compat_soul: []              # 兼容的 Soul 派系

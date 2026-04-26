@@ -1,5 +1,5 @@
 <!--
-Form: 李笑来 v1.0-draft
+Form: 李笑来
 短句轰炸(强调式)+ 书面化(略口语),适合教程型 / 干货长论型。
 关键特征:概念锤式重定义、加粗强调单句成段。
 -->
@@ -8,7 +8,6 @@ Form: 李笑来 v1.0-draft
 type: form
 name: lixiaolai
 display_name: 李笑来
-version: 1.0-draft
 source: ai-distilled
 factions: [短句轰炸, 书面化]
 compat_soul: [布道派, 教程派]

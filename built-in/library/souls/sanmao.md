@@ -1,15 +1,13 @@
 <!--
-Soul: 三毛 v1.0-draft
+Soul: 三毛
 基于 AI 训练知识 + 抽样代表作产出。
 代表作:撒哈拉的故事 / 雨季不再来 / 梦里花落知多少 / 温柔的夜
-后续 v2.0 将基于 30+ 篇代表作完整提取。
 -->
 
 ---
 type: soul
 name: sanmao
 display_name: 三毛
-version: 1.0-draft
 source: ai-distilled
 factions: [抒情派, 陪伴派]
 compat_form: [抒情, 长句分析]

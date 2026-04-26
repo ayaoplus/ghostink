@@ -21,7 +21,6 @@ plays 字段列出本 playbook 包含的所有 play 名称。
 type: playbook
 name: <slug-英文小写>
 display_name: <中文显示名>
-version: 1.0-draft
 source: ai-distilled
 plays: []                    # 本 playbook 包含的 play 名称数组
 description: |

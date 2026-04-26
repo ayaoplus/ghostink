@@ -41,8 +41,8 @@ Five iconic Chinese authors come pre-distilled with complete trios:
 
 ## Status
 
-- **v1**: Chinese-first, pure-prompt skill (no scripts/builds)
-- **International support**: a v2+ goal, see DESIGN.md
+Chinese-first, pure-prompt skill (no scripts/builds). International support
+not currently a priority — see DESIGN.md for architecture details.
 
 ## Documentation
 

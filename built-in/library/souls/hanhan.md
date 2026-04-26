@@ -1,5 +1,5 @@
 <!--
-Soul: 韩寒(博客时代)v1.0-draft
+Soul: 韩寒(博客时代)
 基于 AI 训练知识 + 抽样代表作产出。
 对象:博客时代韩寒(2006-2014),不混入电影 / 长篇小说期。
 代表作:杂的文 / 韩寒博客评论 / 早期博客文集
@@ -9,7 +9,6 @@ Soul: 韩寒(博客时代)v1.0-draft
 type: soul
 name: hanhan
 display_name: 韩寒
-version: 1.0-draft
 source: ai-distilled
 factions: [辛辣派, 思辨派]
 compat_form: [短句轰炸, 反讽]

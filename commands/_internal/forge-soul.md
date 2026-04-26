@@ -15,7 +15,7 @@
 
 `[studio]/soul.md`,严格按 `templates/soul.template.md` schema:
 
-- frontmatter:type=soul / name(用户起的 slug)/ display_name(用户起的中文名)/ version=1.0-draft / source=ai-distilled / factions / compat_* / incompat_* / description
+- frontmatter:type=soul / name(用户起的 slug)/ display_name(用户起的中文名)/ source=ai-distilled / factions / compat_* / incompat_* / description
 - 6 节正文(0.1-0.6)
 
 ## 流程(6 节,每节 1-2 个 AskUserQuestion)

@@ -13,8 +13,7 @@
 
 `<type>` 取值:`soul` / `form` / `playbook`。
 
-> **提炼新参考**用顶级命令 `/ghostink distill <author>`(原 `library analyze`
-> 已升级)。详见 `commands/distill.md`。
+> **提炼新参考**用顶级命令 `/ghostink distill <author>`,详见 `commands/distill.md`。
 
 ---
 
@@ -36,8 +35,7 @@
 4. 输出表格(分三块:soul / form / playbook),每行含:
    - Name(slug)
    - Display name(中文)
-   - Version(`1.0-quick` 加 ⚠,`1.0-draft` 加 ⚠,`2.0-distilled` 推荐)
-   - Source(built-in / ai-distilled / user-distilled-quick / user-distilled-deep)
+   - Source(`built-in` / `ai-distilled` 加 ⚠,`user-distilled-quick` 加 ⚠,`user-distilled-deep` 推荐)
    - Factions
    - 兼容性状态(同源 ✓ / 兼容 ✓ / 中性 / 不兼容 ⚠ / 当前在用 ★)
    - Description
@@ -52,11 +50,11 @@
 Soul Library
 ============
 
-Name        Display    Version          Source                  Factions          Status      Description
-maobidao    猫笔刀     2.0-distilled    user-distilled-deep     陪伴派,思辨派    ★ 在用       有钱人的陪伴式财经
-sanmao      三毛       1.0-draft⚠      built-in                抒情派,陪伴派    ✓ 兼容       流浪叙事 + 浓情
-wangxiaobo  王小波     1.0-draft⚠      built-in                思辨派,辛辣派    ⚠ 不兼容     反讽 + 理性
-                                                                                              (用 --include-incompat 显示)
+Name        Display    Source                       Factions          Status      Description
+maobidao    猫笔刀     user-distilled-deep          陪伴派,思辨派    ★ 在用       有钱人的陪伴式财经
+sanmao      三毛       ai-distilled⚠              抒情派,陪伴派    ✓ 兼容       流浪叙事 + 浓情
+wangxiaobo  王小波     ai-distilled⚠              思辨派,辛辣派    ⚠ 不兼容     反讽 + 理性
+                                                                                  (用 --include-incompat 显示)
 
 Form Library
 ============

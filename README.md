@@ -73,8 +73,6 @@ draft → form check → deai 报告 → 平台输出。
 - `library info [name]` — 看某个的详情
 - `library pick {soul/form/playbook} [name]` — 切换在用的
 
-(原 `library analyze` 已升级为顶级 `/ghostink distill`;
-原边角入口 `/ghostink deai` 已升级为一级命令)
 
 ## 内置作家库
 
@@ -138,14 +136,13 @@ Ghostink 通过派系标签管理 soul/form/playbook 之间的兼容性。完整
 3. 向上找祖先目录(不跨 `$HOME`)
 4. 否则 cwd 即 studio root(初始化场景)
 
-## 二阶段路线图
+## 未来工作
 
-下面这些功能在 v2+ 实现:
+下面这些功能不是当前优先,未来视使用情况推进:
 
 - 多 Soul 完整支持(同时绑定不同平台,如公众号 vs X 用不同灵魂)
 - `evolve / refresh` 从已发文章反向学习
-- 内置库 v2(用户准备 30+ 篇代表作跑 `/ghostink distill` 重训)
-- Form 库扩充(再加 5-10 位中文作家)
+- 内置作家库扩充(再加 5-10 位中文作家)
 
 完整设计与决策记录见 `DESIGN.md`。
 

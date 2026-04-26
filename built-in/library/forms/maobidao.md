@@ -1,5 +1,5 @@
 <!--
-Form: 猫笔刀 v2.0-distilled
+Form: 猫笔刀
 
 distill deep 流程完成。基于 35 篇 in-context 真实文章 + 新 Form 模板 14 节提取,
 每条规则强制 [traces to: Soul 0.X]。数字字段(短句% / 段长% / 频率)基于 LLM
@@ -10,7 +10,6 @@ distill deep 流程完成。基于 35 篇 in-context 真实文章 + 新 Form 模
 type: form
 name: maobidao
 display_name: 猫笔刀
-version: 2.0-distilled
 source: user-distilled-deep
 factions: [口语化, 短句轰炸, 反讽]
 compat_soul: [陪伴派, 思辨派]

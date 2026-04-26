@@ -1,5 +1,5 @@
 <!--
-Playbook: 李笑来 v1.0-draft
+Playbook: 李笑来
 三种打法:教程型(最详细,核心)+ 干货长论型 + 杂文型。
 -->
 
@@ -7,7 +7,6 @@ Playbook: 李笑来 v1.0-draft
 type: playbook
 name: lixiaolai
 display_name: 李笑来
-version: 1.0-draft
 source: ai-distilled
 plays: [教程型, 干货长论型, 杂文型]
 description: |

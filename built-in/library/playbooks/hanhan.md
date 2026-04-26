@@ -1,5 +1,5 @@
 <!--
-Playbook: 韩寒(博客时代) v1.0-draft
+Playbook: 韩寒(博客时代)
 两种打法:热点评论型(主)+ 杂文型(辅)。
 -->
 
@@ -7,7 +7,6 @@ Playbook: 韩寒(博客时代) v1.0-draft
 type: playbook
 name: hanhan
 display_name: 韩寒
-version: 1.0-draft
 source: ai-distilled
 plays: [热点评论型, 杂文型]
 description: |

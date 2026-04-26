@@ -1,5 +1,5 @@
 <!--
-Playbook: 猫笔刀 v2.0-distilled
+Playbook: 猫笔刀
 
 distill deep 流程完成。基于 35 篇 in-context 样本聚类,识别 7 种 Play,
 frequency 加起来 ≈100%。每个 Play 加 Core Characteristics / Anti-Patterns +
@@ -10,7 +10,6 @@ frequency 加起来 ≈100%。每个 Play 加 Core Characteristics / Anti-Patter
 type: playbook
 name: maobidao
 display_name: 猫笔刀
-version: 2.0-distilled
 source: user-distilled-deep
 plays: [日报型, 周末闲聊型, 极端日报型, 主题深挖型, 自传年终复盘型, 短公告型, 热点评论型]
 description: |

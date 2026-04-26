@@ -1,5 +1,5 @@
 <!--
-Form: 三毛 v1.0-draft
+Form: 三毛
 抒情 + 长句分析,适合主题叙事型与杂文型 playbook。
 -->
 
@@ -7,7 +7,6 @@ Form: 三毛 v1.0-draft
 type: form
 name: sanmao
 display_name: 三毛
-version: 1.0-draft
 source: ai-distilled
 factions: [抒情, 长句分析]
 compat_soul: [抒情派, 陪伴派]

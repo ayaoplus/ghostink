@@ -1,5 +1,5 @@
 <!--
-Form: 王小波 v1.0-draft
+Form: 王小波
 反讽 + 长句分析,适合杂文型与干货长论型。
 注:王小波的反讽容易被 deai 误判为"AI 感",pick 此 form 时 deai 报告需
 人工裁定(可加 `--with-form` 让 deai 自动调低反讽相关规则的灵敏度)。
@@ -9,7 +9,6 @@ Form: 王小波 v1.0-draft
 type: form
 name: wangxiaobo
 display_name: 王小波
-version: 1.0-draft
 source: ai-distilled
 factions: [反讽, 长句分析]
 compat_soul: [思辨派, 辛辣派]
