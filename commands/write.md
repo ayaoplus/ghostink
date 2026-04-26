@@ -19,7 +19,7 @@ Step 1  选 playbook
 Step 2  brainstorm → skeleton (调 _internal/brainstorm.md)
 Step 3  draft (调 _internal/draft.md)
 Step 4  form-check (调 _internal/form-check.md,出报告)
-Step 5  deai-pass (调 _internal/deai-pass.md,出报告)
+Step 5  deai (调 commands/deai.md,出报告)
 Step 6  illustrate (可选,调 commands/illustrate.md)
 Step 7  platform-output
 Step 8  profile 自动追加
@@ -131,7 +131,7 @@ Step 8  profile 自动追加
 >
 > [全文]
 >
-> 接下来自动跑 form-check 和 deai-pass,我会出报告。
+> 接下来自动跑 form-check(看像不像作家)和 deai(看像不像 AI),我会出报告。
 
 ---
 
@@ -164,14 +164,16 @@ Step 8  profile 自动追加
 
 ---
 
-## Step 5 — deai-pass(自动出报告,**不阈值通过**)
+## Step 5 — deai(自动出报告,**不阈值通过**)
 
-调用 `commands/_internal/deai-pass.md`。
+调用 `commands/deai.md`(独立一级命令的扫描逻辑,加 `--with-form` ON
+默认加载当前 studio/form.md 调灵敏度)。
 
 输出报告含:
-- 9 条规则各自的 PASS/FAIL/WARN
-- 总分(参考用,不强制阈值)
-- 具体行号 + 建议改写
+- 5 个扫描层(零容忍 / 句式结构 / 词频措辞 / 内容深度 / 活人感终审)
+- 共 50+ 条规则的 PASS / WARN / FAIL
+- 修复优先级排序
+- 每个 FAIL 都带具体替换方案(零容忍清单 1.1 词表)
 
 **不强制修复**,处理同 Step 4:
 
@@ -232,7 +234,7 @@ Step 8  profile 自动追加
 
 ## 实现备注
 
-- form-check 和 deai-pass **只出报告,不阈值通过**——决定权在用户
+- form-check 和 deai **只出报告,不阈值通过**——决定权在用户
 - 中途用户说"重写""换个角度""不要这段"时,回到对应 step 的具体子步,不要清空重做整篇
 - 不要每步都问 AskUserQuestion 轰炸,只在分叉点和"用户确认"检查点问
 - 中文叙述,关键术语保留英文

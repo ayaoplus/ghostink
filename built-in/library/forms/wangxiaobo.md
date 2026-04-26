@@ -1,7 +1,8 @@
 <!--
 Form: 王小波 v1.0-draft
 反讽 + 长句分析,适合杂文型与干货长论型。
-注:王小波的反讽容易被 deai-pass 误判为"AI 感",pick 此 form 时 deai 报告需人工裁定。
+注:王小波的反讽容易被 deai 误判为"AI 感",pick 此 form 时 deai 报告需
+人工裁定(可加 `--with-form` 让 deai 自动调低反讽相关规则的灵敏度)。
 -->
 
 ---

@@ -112,7 +112,7 @@ Soul/Form/Playbook 描述"我"的特征,Profile 提供"我"的具体素材。两
 │        │ ↓                   │                               │
 │        │ form-check          │                               │
 │        │ ↓                   │                               │
-│        │ deai-pass           │                               │
+│        │ deai                │                               │
 │        │ ↓                   │                               │
 │        │ illustrate (可选)    │                               │
 │        │ ↓                   │                               │
@@ -174,7 +174,7 @@ Soul/Form/Playbook 描述"我"的特征,Profile 提供"我"的具体素材。两
 - `brainstorm` — 出 skeleton(write 第 1 阶段)
 - `draft` — 用 form 写文(write 第 2 阶段)
 - `form-check` — 文笔合规审查(write 第 3 阶段)
-- `deai-pass` — 去 AI 感(write 第 4 阶段)
+- ~~`deai-pass`~~ — 已升级为一级独立命令 `/ghostink deai`(完整 spec 在 `commands/deai.md`,write Step 5 调它)
 
 ### 4.4 保留的独立可选命令
 
@@ -305,7 +305,7 @@ Step 4: form-check (自动)
   - 报告 PASS/FAIL
   - 用户可"自动修"或针对性改
 
-Step 5: deai-pass (自动出报告,用户决定)
+Step 5: deai (自动出报告,用户决定 — 调一级命令 commands/deai.md)
   - 9 条规则扫描,生成报告(含分数 + 具体建议)
   - 不强制修复,不设阈值自动通过
   - 报告呈现给用户后,询问:全部修 / 选择性修 / 跳过
@@ -377,7 +377,7 @@ ghostink/
 │       ├── brainstorm.md
 │       ├── draft.md
 │       ├── form-check.md
-│       └── deai-pass.md
+│       (deai 已升一级,见 commands/deai.md)
 ├── built-in/
 │   └── library/
 │       ├── souls/
@@ -919,7 +919,7 @@ T17, T18, T19 (P4 文档收尾)
 - 强禁会扼杀实验
 - 警告 + 用户确认是足够的护栏
 
-### 12.7 为什么 deai-pass 不设阈值自动通过?
+### 12.7 为什么 deai 不设阈值自动通过?
 
 - AI 感识别本身有主观成分,机器分数不能替代作者判断
 - 强制阈值会让用户陷入"为分数改稿"而非"为读者改稿"
@@ -958,7 +958,7 @@ T17, T18, T19 (P4 文档收尾)
 | 1 | 多 Soul v1 是否实现 | **不做**,v2 实现;v1 文件结构预留扩展(`soul.md` 单文件,后续可加 `souls/` 目录) |
 | 2 | identity.md 读者画像 | **细化为标签**,见 5.1 节 Step 1 的三维标签词表 |
 | 3 | distill 文章数下限 | **deep 模式 20+,quick 模式 5+**,quick 标记为 `version: 1.0-quick` |
-| 4 | deai-pass 阈值 | **不设阈值**,只出报告,用户决定改不改 |
+| 4 | deai 阈值 | **不设阈值**,只出报告,用户决定改不改(命令已升一级) |
 | 5 | examples/ 端到端 demo | ~~**要做**~~ → 已废弃,三件套 canonical 在 built-in/library/ |
 | 6 | 内置作家库精度 | **v1 由 AI 直接产出**,用户后续提供文章重训 v2 |
 | 7 | 文档语言 | **中文 + 关键术语英文**,见 12.8 节细则 |

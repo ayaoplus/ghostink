@@ -156,7 +156,7 @@ quick 模式跳过 Phase 3,Phase 5 改 LLM 估算。
 
 15-20 篇(quick 模式 5+),可与 Phase 1 重叠(同样的文章用不同视角再读)。
 
-##### 2.2 提取 Form 14 节
+##### 2.2 提取 Form 15 节
 
 按新模板(`templates/form.template.md`)填:
 
@@ -166,7 +166,7 @@ quick 模式跳过 Phase 3,Phase 5 改 LLM 估算。
 | 2. Reader Cognitive Model | **关键** — 默认读者智商假设 + 已知/未知边界 + 论证强度档位 |
 | 3. Sentence Rhythm | 句长统计(数字)+ 节奏型(周期描述) |
 | 4. Paragraph Rhythm | 段长统计 + 段间转折手法 + 留白逻辑 |
-| 5. Vocabulary Fingerprint | Must / Often / Never / Forbidden 4 层(共 ≥35 条) |
+| 5. Vocabulary Fingerprint | Must / Often / Never / Forbidden 4 层(共 ≥35 条);**每个 Never Use 必须配替换方案**(硬约束) |
 | 6. Address Conventions | 自称 / 称读者 / 称他人 / 禁用称谓 |
 | 7. Analogy Style | 类比库来源 + 好类比标准 + 密度 |
 | 8. Context Projection | 参考系 + 讽刺锐度等级 + 信息密度模式 |
@@ -176,13 +176,44 @@ quick 模式跳过 Phase 3,Phase 5 改 LLM 估算。
 | 12. Signature Expressions | ≥8 条 + ≥1 自创词(关键指纹) |
 | 13. Punctuation & Layout | 标点频率 + emoji/加粗/列表习惯 |
 | 14. Prohibition List | ≥10 条 + 每条 trace 回 Soul |
+| **15. Rhetorical Techniques**(新) | **扫 Appendix A 16 条挑 4-8 条相关的填**(见下 2.2.5) |
+
+##### 2.2.5 Section 15 修辞技巧库扫描(新)
+
+`templates/form.template.md` 末尾的 **Appendix A** 列了 16 条通用修辞
+技巧库(扣主线句 / 论述中的故意打破 / 句式断裂 / 回环呼应 / 谦逊铺垫 /
+读者直呼 / 疑问句节奏 / 层层剥开 / 英雄之旅 / 反向论证 / 案例公正性 /
+人物画像法 / 文化升维 / 升番逻辑 等)。
+
+**Phase 2 扫附录流程**:
+1. Read `templates/form.template.md` 的 Appendix A 16 条
+2. 对每条,在 Phase 1+2 已读样本里找证据:**这位作家用过这条吗?用得多吗?**
+3. 挑出 4-8 条最贴脸的写到 Section 15(频率 + 文中证据 [#编号 §段])
+4. 挑不出 4 条 → 不要硬凑,本身就是有效观察(说明该作家修辞特征弱 / 偏向其他维度)
+
+**为什么这步重要**:Phase 1+2 提的 14 节侧重"句长 / 词汇 / 结构"这种**可数维度**,
+但很多差异化在**修辞招式层面**(怎么开头 / 怎么类比 / 怎么收尾的"招")。漏了
+Section 15 的 form 容易停留在"句长 / 段长"层面,捕捉不到作家真正的"招式"。
 
 ##### 2.3 trace 到 Soul
 
-每节(尤其 Vocabulary / Prohibition / Punctuation)末尾必须写 `[traces to: Soul 0.X]`。
-连不上的规则要么删,要么倒推 Soul 该补什么(回 Phase 1 修订)。
+每节(尤其 Vocabulary / Prohibition / Punctuation / Rhetorical Techniques)
+末尾必须写 `[traces to: Soul 0.X]`。连不上的规则要么删,要么倒推 Soul
+该补什么(回 Phase 1 修订)。
 
-##### 2.4 写到文件 + 日志
+##### 2.4 Vocabulary Never Use 替换方案硬约束(强化)
+
+Phase 2 写 Form Section 5 Vocabulary Never Use 时,**每个禁用词必须配
+替换方案**。只列禁用词不写替换的不算合格,Phase 2 自查 fail。
+
+例:
+- ❌ "禁用:此外 / 然而 / 因此"(只列不替)
+- ✅ "禁用:此外 → 另外 / 然而 → 但 / 因此 → 所以"(每个有替换)
+
+参考 `commands/deai.md` 层 1.1 的 46 条 AI 烂熟词替换表 — Form 里的
+Never Use 子集应跟那张表对齐(deai 是通用扫描器,form 是当前作家的具体禁用)。
+
+##### 2.5 写到文件 + 日志
 
 写 `[studio]/library/forms/<author>.md`。日志 `phase2-form.md`。
 

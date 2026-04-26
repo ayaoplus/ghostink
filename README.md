@@ -61,13 +61,20 @@ draft → form check → deai 报告 → 平台输出。
 从一位作者的历史文章**多轮提炼**出 soul / form / playbook 三件套
 (默认 deep 模式 20+ 篇,加 `--quick` 走 5+ 篇)。ghostink 的核心提炼引擎。
 
+### `/ghostink deai [file]`
+任意中文文本去 AI 感扫描 + 修订建议。**不依赖任何作家 form**,通用 50+
+规则覆盖 4 大类(零容忍清单 / 句式与结构 / 词频与措辞 / 内容深度)+ 1 个
+活人感终审。每条 FAIL 都带具体替换方案。融合维基"AI 写作特征"24 种 +
+卡兹克禁用词 + 内部规则。
+
 ### `/ghostink library`
 库管理。子命令:
 - `library list` — 列出内置 + 自拆的 soul/form/playbook
 - `library info [name]` — 看某个的详情
 - `library pick {soul/form/playbook} [name]` — 切换在用的
 
-(原 `library analyze` 已升级为顶级 `/ghostink distill`)
+(原 `library analyze` 已升级为顶级 `/ghostink distill`;
+原边角入口 `/ghostink deai` 已升级为一级命令)
 
 ## 内置作家库
 
@@ -87,9 +94,10 @@ draft → form check → deai 报告 → 平台输出。
 
 | 命令 | 用途 |
 |---|---|
-| `/ghostink check [file]` | 任意文本 form 合规审查(出报告,不改原文件) |
-| `/ghostink deai [file]` | 任意文本去 AI 感(出报告,决定权在你) |
+| `/ghostink check [file]` | 任意文本 form 合规审查(**需 studio 有 form.md**) |
 | `/ghostink illustrate [file]` | 配图(挂载式,调外部图像生成 CLI) |
+
+> `check` 跟 `deai`(一级命令)互补:**check 看像不像作家,deai 看像不像 AI**。
 
 ## 派系标签 & 兼容性
 

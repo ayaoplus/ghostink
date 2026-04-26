@@ -12,7 +12,6 @@
 | `brainstorm.md` | `write` Step 2 | 出 skeleton(角度/结构/递进/收尾) |
 | `draft.md` | `write` Step 3 | 用 form 把 skeleton 写成文 |
 | `form-check.md` | `write` Step 4 / `check` 命令 | 文笔合规审查(出报告) |
-| `deai-pass.md` | `write` Step 5 / `deai` 命令 | 去 AI 感扫描(出报告,不阈值通过) |
 
 ## 调用规范
 
@@ -21,9 +20,10 @@
 
 ## 暴露给用户的 thin wrapper
 
-`form-check` 和 `deai-pass` 同时支持作为独立用户命令调用:
+`form-check` 同时支持作为独立用户命令调用:
 
 - `/ghostink check [file]` → `commands/check.md`(thin wrapper)→ 调 `_internal/form-check.md`
-- `/ghostink deai [file]` → `commands/deai.md`(thin wrapper)→ 调 `_internal/deai-pass.md`
 
-wrapper 只做参数透传,逻辑全在 `_internal/`,维护点单一。
+> 注:`/ghostink deai` 已经是**一级独立命令**,不再走 thin wrapper / _internal
+> 模式。完整 spec 直接在 `commands/deai.md`,write Step 5 直接 Read 该文件
+> 调用其扫描逻辑。
