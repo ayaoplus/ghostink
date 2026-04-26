@@ -4,8 +4,6 @@ Playbook: 猫笔刀 v2.0-distilled
 distill deep 流程完成。基于 35 篇 in-context 样本聚类,识别 7 种 Play,
 frequency 加起来 ≈100%。每个 Play 加 Core Characteristics / Anti-Patterns +
 [traces to: Soul 0.X]。末尾加 Cross-Play Prohibitions 和 Self-Check Checklist。
-
-Phase 4 日志见 examples/maobidao-distill-demo/phase4-playbook-clustering.md
 -->
 
 ---

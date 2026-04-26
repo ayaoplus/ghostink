@@ -4,9 +4,6 @@ Form: 猫笔刀 v2.0-distilled
 distill deep 流程完成。基于 35 篇 in-context 真实文章 + 新 Form 模板 14 节提取,
 每条规则强制 [traces to: Soul 0.X]。数字字段(短句% / 段长% / 频率)基于 LLM
 估算(distill spec 允许)。Form 跟 souls/maobidao.md 同源同步。
-
-Phase 2 日志见 examples/maobidao-distill-demo/phase2-form-extraction.md
-Phase 5 词频日志见 examples/maobidao-distill-demo/phase5-vocab-stats.md
 -->
 
 ---

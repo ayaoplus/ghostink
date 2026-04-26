@@ -83,14 +83,6 @@ draft → form check → deai 报告 → 平台输出。
 
 新人 setup 时可以直接选一套抄起步,以后自然演化。
 
-## 端到端示例
-
-完整示例见 `examples/maobidao-demo/`,包括:
-- setup + write 全流程对话脚本(`transcript.md`)
-- 模拟产出的完整 studio(`studio/`)
-- 一篇 1820 字的 maobidao 风格成稿(`drafts/2026-04-24-ai-junior-dev.md`)
-- 跑 demo 时的反思(`notes.md`)
-
 ## 边角入口
 
 | 命令 | 用途 |

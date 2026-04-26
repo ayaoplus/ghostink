@@ -399,7 +399,6 @@ ghostink/
 │       ├── experiences.md
 │       ├── opinions.md
 │       └── refs.md
-└── examples/                       ← (可选)端到端示例
 ```
 
 ### 6.2 用户工作室(跟用户内容走)
@@ -853,7 +852,7 @@ status: brainstormed
 ### 11.5 P4 - 文档与示例
 
 - [ ] **T17. 重写 README.md / README_CN.md**:对齐新架构
-- [ ] **T18. 写一个端到端 demo**:从 setup 到产出第一篇,放到 examples/
+- [ ] ~~T18. 端到端 demo~~ — 已废弃(三件套 canonical 在 built-in/library/,不需独立 demo)
 - [ ] **T19. 删除过时的 analyzed_authors/ 目录引用**:用 library/ 替代
 
 ### 11.6 任务依赖图
@@ -960,7 +959,7 @@ T17, T18, T19 (P4 文档收尾)
 | 2 | identity.md 读者画像 | **细化为标签**,见 5.1 节 Step 1 的三维标签词表 |
 | 3 | distill 文章数下限 | **deep 模式 20+,quick 模式 5+**,quick 标记为 `version: 1.0-quick` |
 | 4 | deai-pass 阈值 | **不设阈值**,只出报告,用户决定改不改 |
-| 5 | examples/ 端到端 demo | **要做**,用猫笔刀全流程跑一篇示例 |
+| 5 | examples/ 端到端 demo | ~~**要做**~~ → 已废弃,三件套 canonical 在 built-in/library/ |
 | 6 | 内置作家库精度 | **v1 由 AI 直接产出**,用户后续提供文章重训 v2 |
 | 7 | 文档语言 | **中文 + 关键术语英文**,见 12.8 节细则 |
 

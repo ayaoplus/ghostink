@@ -14,7 +14,7 @@
 4. /ghostink distill <author> 从历史文章提炼一位作者(可选,深度自定义)
 ```
 
-新人按这 3 步即可上手。完整示例见 `examples/maobidao-demo/`。
+新人按这 3 步即可上手。
 
 ## 五个核心概念
 

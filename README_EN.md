@@ -49,7 +49,6 @@ Five iconic Chinese authors come pre-distilled with complete trios:
 - [README.md](./README.md) — full docs (Chinese, primary)
 - [DESIGN.md](./DESIGN.md) — architecture and decisions
 - [SKILL.md](./SKILL.md) — Claude-loaded entry point
-- [examples/maobidao-demo](./examples/maobidao-demo) — end-to-end demo
 
 ## License
 

@@ -11,8 +11,6 @@ distill deep 流程完成(基于 35 篇 in-context 真实文章):
 - Phase 5: 词频统计(LLM 估算,见 phase5 日志)
 - Phase 6: 三件套统一升级 2.0-distilled,frontmatter + 兼容性标签 finalize
 - Phase 7: skip(文章不是用户自己写的,profile bootstrap 不适用)
-
-Phase 全程日志见 examples/maobidao-distill-demo/
 -->
 
 ---
