@@ -20,7 +20,7 @@
 ## list 子命令
 
 ### 用途
-列出所有可用的 soul / form / playbook,标版本徽章 + 当前在用标记 + 兼容性。
+列出所有可用的 soul / form / playbook,标 source 标记 + 当前在用标记 + 兼容性。
 
 ### 流程
 

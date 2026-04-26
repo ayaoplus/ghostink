@@ -4,18 +4,19 @@
 
 Ghostink 是一个 [Claude Code](https://claude.ai/claude-code) Skill,
 为高频更新的中文新媒体创作者(公众号 / X / 微博)而生。它把作者的
-**Soul(灵魂)/ Form(文笔)/ Playbook(打法)**三层分离,配合个人 **Profile**
-(素材库)共同驱动写作——你提供想法和经历,Ghostink 处理结构、风格、格式。
+**Soul(灵魂)/ Form(文笔)/ Playbook(打法)** 三层分离,配合个人
+**Profile**(素材库)共同驱动写作——你提供想法和经历,Ghostink 处理
+结构、风格、格式。
 
 ## 核心理念:为什么三层分离
 
 传统的"写作风格"工具把灵魂和形态揉在一起。Ghostink 的关键洞察是:
 
-- **Soul**(灵魂):你是谁,为什么读者要追你——价值主张 / 定位 / 信念 / 信任机制 / 情感契约
-- **Form**(文笔):字怎么摆——句式 / 词汇 / 开头结尾 / 节奏
-- **Playbook**(打法):不同情境下用哪种文章类型(日报 / 教程 / 评论 / ...)
+- **Soul**(灵魂):你是谁,为什么读者要追你 — 价值主张 / 定位 / 信念 / 信任机制 / 情感契约
+- **Form**(文笔):字怎么摆 — 句式 / 词汇 / 开头结尾 / 节奏
+- **Playbook**(打法):不同情境用哪种文章类型(日报 / 教程 / 评论 / ...)
 
-灵魂跨主题、跨平台稳定。文笔可以为不同场景换。打法是灵魂在不同情境下的固化版本。
+灵魂跨主题、跨平台稳定;文笔可以为不同场景换;打法是灵魂在不同情境下的固化版本。
 **Profile**(身份 / 经历 / 观点 / 参照系)是与三者并行的素材输入。
 
 这样设计的好处:你可以"借猫笔刀的灵魂 + 用王小波的文笔 + 走李笑来的打法",
@@ -24,17 +25,19 @@ Ghostink 是一个 [Claude Code](https://claude.ai/claude-code) Skill,
 ## 快速开始
 
 ```bash
-# 1. 切到一个空目录(将作为你的 studio root)
+# 切到一个空目录(将作为你的 studio root)
 cd ~/writing/my-blog
 
-# 2. 跑 setup,15-20 分钟交互式向导
+# 1. 建档案(15-20 分钟交互向导)
 /ghostink setup
 
-# 3. 写第一篇
+# 2. 写一篇
 /ghostink write "你的主题"
 
-# 4. 库管理(换文笔 / 看库存 / 加新参考)
-/ghostink library
+# 其他常用:
+/ghostink distill <author>    # 从历史文章提炼一位作者三件套
+/ghostink deai [file]         # 任意文本去 AI 感扫描
+/ghostink library             # 换文笔 / 看库存
 ```
 
 ## 五个核心概念
@@ -45,21 +48,22 @@ cd ~/writing/my-blog
 | **Form**(文笔) | 字怎么摆 | `form.md` |
 | **Playbook**(打法) | 不同情境用哪种文章类型 | `playbook.md` |
 | **Profile**(素材) | 你有什么 | `profile/` |
-| **Skeleton**(骨架) | 单篇文章的角度/结构 | `drafts/_brainstorm/*` |
+| **Skeleton**(骨架) | 单篇文章的角度 / 结构 | `drafts/_brainstorm/*` |
 
-## 三个一级命令
+## 五个一级命令
 
 ### `/ghostink setup`
-首次/重置:建立你的创作者档案。15-20 分钟交互向导,产出
-soul / form / playbook / profile。
+首次 / 重置:建立你的创作者档案。15-20 分钟交互向导,产出 soul / form /
+playbook / profile。
 
 ### `/ghostink write [topic]`
 写一篇文章的主路径。内部依次走:选 playbook → brainstorm 出 skeleton →
-draft → form check → deai 报告 → 平台输出。
+draft → form-check 报告 → deai 报告 → 平台输出。
 
 ### `/ghostink distill <author>`
-从一位作者的历史文章**多轮提炼**出 soul / form / playbook 三件套
-(默认 deep 模式 20+ 篇,加 `--quick` 走 5+ 篇)。ghostink 的核心提炼引擎。
+从一位作者的历史文章**多轮提炼**出 soul / form / playbook 三件套。
+默认 deep 模式(20+ 篇 / 30-60 min / 经 3-5 轮 predict-then-compare 收敛),
+加 `--quick` 走 5+ 篇 ~10 分钟轻量版。Ghostink 的核心提炼引擎。
 
 ### `/ghostink deai [file]`
 任意中文文本去 AI 感扫描 + 修订建议。**不依赖任何作家 form**,通用 50+
@@ -69,10 +73,9 @@ draft → form check → deai 报告 → 平台输出。
 
 ### `/ghostink library`
 库管理。子命令:
-- `library list` — 列出内置 + 自拆的 soul/form/playbook
+- `library list` — 列出内置 + 自拆的 soul / form / playbook
 - `library info [name]` — 看某个的详情
-- `library pick {soul/form/playbook} [name]` — 切换在用的
-
+- `library pick {soul|form|playbook} [name]` — 切换在用的
 
 ## 内置作家库
 
@@ -99,7 +102,7 @@ draft → form check → deai 报告 → 平台输出。
 
 ## 派系标签 & 兼容性
 
-Ghostink 通过派系标签管理 soul/form/playbook 之间的兼容性。完整词表见
+Ghostink 通过派系标签管理 soul / form / playbook 之间的兼容性。完整词表见
 `built-in/library/factions.md`。
 
 兼容性是**软警告**——同源安静通过,不兼容也允许用户继续(创作者的

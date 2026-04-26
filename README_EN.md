@@ -14,10 +14,24 @@ writer's **Soul** (identity), **Form** (prose style), and **Playbook**
 
 ```bash
 cd ~/writing/my-blog
+
+# Core flow:
 /ghostink setup            # 15-20 min interactive wizard
 /ghostink write "topic"    # write an article
+
+# Other top-level commands:
+/ghostink distill <author> # multi-round distill an author's trio from articles
+/ghostink deai [file]      # de-AI any Chinese text (50+ rules, no form needed)
 /ghostink library          # manage references / switch styles
 ```
+
+## Five Top-Level Commands
+
+- `/ghostink setup` — interactive wizard, produce soul / form / playbook / profile
+- `/ghostink write [topic]` — main writing flow (brainstorm → draft → form-check → deai → output)
+- `/ghostink distill <author>` — distill an author's trio from historical articles (deep mode = 20+ articles, 7 phases including multi-round predict-then-compare)
+- `/ghostink deai [file]` — de-AI scanner with 50+ universal rules, doesn't need form
+- `/ghostink library` — list / info / pick across built-in + user-distilled trios
 
 ## Core Concepts
 
