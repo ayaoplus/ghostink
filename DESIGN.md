@@ -40,7 +40,7 @@
 | 概念 | 是什么 | 跨文章稳定性 | 谁产 | 谁用 | 文件 |
 |---|---|:---:|---|---|---|
 | **Soul** | 我是谁:价值/定位/信念/契约/信任机制 | 高 | setup 一次产出 | brainstorm 选切入、检查灵魂契合度 | `soul.md` |
-| **Form** | 字怎么摆:句式/词汇/开头结尾/节奏 | 中(可换) | setup pick 或 analyze 拆 | write 写稿、check 审稿 | `form.md` |
+| **Form** | 字怎么摆:句式/词汇/开头结尾/节奏 | 中(可换) | setup pick 或 distill 拆 | write 写稿、check 审稿 | `form.md` |
 | **Playbook** | 怎么打这一类:文章类型们 | 中(随领域演进) | setup 建 + 用户增加 | write 选打法 | `playbook.md` |
 | **Profile** | 我有什么:身份/经历/观点/参照系 | 高(增量长大) | setup 粗建 + write 自动追加 | brainstorm 选话题选素材 | `profile/*` |
 | **Skeleton** | 这一篇的骨架:角度/结构/递进/收尾 | 单篇产物 | brainstorm 阶段产 | draft 阶段消费 | `drafts/_brainstorm/*` |
@@ -137,7 +137,7 @@ Soul/Form/Playbook 描述"我"的特征,Profile 提供"我"的具体素材。两
 库管理:
   /ghostink library list                  ← 看有什么
   /ghostink library info [name]           ← 看某个详细
-  /ghostink library analyze [author]      ← 拆一个新参考
+  /ghostink distill [author]              ← 提炼新参考(原 library analyze 已升为顶级)
   /ghostink library pick [type] [name]    ← 切换 soul/form
 ```
 
@@ -145,13 +145,14 @@ Soul/Form/Playbook 描述"我"的特征,Profile 提供"我"的具体素材。两
 
 ## 4. 命令体系
 
-### 4.1 一级命令(用户直接调,共 3 个)
+### 4.1 一级命令(用户直接调,共 4 个)
 
 | 命令 | 用途 | 何时用 |
 |---|---|---|
 | `/ghostink setup` | 首次/重置:建立创作者档案 | 新人,或想全部重做时 |
 | `/ghostink write [topic]` | 写一篇文章 | 日常主路径 |
-| `/ghostink library` | 库管理(子命令见下) | 想换文笔、加新参考、看库存 |
+| `/ghostink distill <author>` | 从历史文章多轮提炼一位作者的三件套 | 想为某作者建 2.0-distilled 版三件套(本轮新提级,原为 `library analyze`) |
+| `/ghostink library` | 库管理(子命令见下) | 想换文笔、看库存 |
 
 ### 4.2 library 子命令
 
@@ -159,7 +160,6 @@ Soul/Form/Playbook 描述"我"的特征,Profile 提供"我"的具体素材。两
 |---|---|
 | `library list` | 列出内置库 + 用户自拆库的所有 soul/form/playbook |
 | `library info [name]` | 看某个 soul/form/playbook 的详情 |
-| `library analyze [author] [--only=soul/form/playbook]` | 拆一个新参考,默认拆三件套,可指定只拆其一 |
 | `library pick form [name]` | 把库里某个 form 设为当前在用的 form |
 | `library pick soul [name]` | 把库里某个 soul 设为当前 soul(多 IP 时绑定平台) |
 | `library pick playbook [name]` | 加载某个 playbook 到当前 |
@@ -182,7 +182,7 @@ Soul/Form/Playbook 描述"我"的特征,Profile 提供"我"的具体素材。两
 
 ### 4.5 砍掉的命令
 
-- ~~`style-init`~~ → 改名为 `library analyze`
+- ~~`style-init`~~ → 改名 `library analyze`(P1)→ 升级为顶级 `/ghostink distill`(本轮)
 - ~~`style-forge`~~ → 收进 setup
 - ~~`style-evolve`~~ → 全部砍,功能拆解:
   - 反馈调整 → 融入 write 反馈循环
@@ -197,7 +197,7 @@ Soul/Form/Playbook 描述"我"的特征,Profile 提供"我"的具体素材。两
 
 | 重构前(9 个) | 重构后位置 |
 |---|---|
-| style-init | `library analyze` |
+| style-init | 顶级 `/ghostink distill`(中间曾叫 `library analyze`) |
 | style-forge | setup 内部 |
 | style-evolve | 砍 / 二阶段 |
 | profile-init | setup 内部(单独入口保留) |
@@ -237,7 +237,7 @@ Step 2: 选模仿起点
     A) 从内置库选一个完整套件(适合新人,选了直接全套抄)
        → 列出 5 个内置作家 + 一句简介
     B) 从内置库选多个组合(soul 选 X,form 选 Y,playbook 选 Z)
-    C) 我有自己想拆的参考,先去拆(进入 library analyze 子流程,完成后回来)
+    C) 我有自己想拆的参考,先去拆(进入 distill 流程,完成后回来)
     D) 不模仿任何人,直接对话生成(适合有强烈自我认知的老手)
 
 Step 3: 锐化 profile(对话式)
@@ -345,13 +345,13 @@ Step 8: profile 自动追加
   → 提示:下次 write 会用这个 form
 
 加新参考:
-  /ghostink library analyze 鲁迅 --path ./articles/luxun/
+  /ghostink distill 鲁迅 --path ./articles/luxun/
   → 读文章 → 拆 soul + form + playbook
   → 写到 library/souls/luxun.md, library/forms/luxun.md, library/playbooks/luxun.md
   → 询问:要立刻 pick 这个 form 吗?
 
 只拆一项:
-  /ghostink library analyze X --only=form
+  /ghostink distill X --only=form
   → 只拆 form,跳过 soul 和 playbook
 ```
 
@@ -459,7 +459,7 @@ ghostink/
 
 每个作家:
 - 收集 30+ 篇代表作品
-- 走一遍 `library analyze` 的全套提取
+- 走一遍 `/ghostink distill` 的全套提取
 - 人工校对 + 补充兼容性标签
 - 估计 0.5-1 天/人
 
@@ -470,13 +470,13 @@ ghostink/
 为了不卡住整体进度,内置库走**两阶段提炼**:
 
 - **v1(本次重构内)**:由 AI 基于训练知识 + 抽样作品**直接产出初版**,标记为 `version: 1.0-draft`。这一版能让 setup 流程跑通,但精度可能不够。
-- **v2(后续迭代)**:用户准备好每个作家 30+ 篇代表作,跑 `library analyze` 走完整提取流程,产出 `version: 2.0`。v2 替换 v1。
+- **v2(后续迭代)**:用户准备好每个作家 30+ 篇代表作,跑 `/ghostink distill`(deep 模式)走完整提取流程,产出 `version: 2.0-distilled`。v2 替换 v1。
 
 每个 library 文件 frontmatter 标注:
 
 ```yaml
-version: 1.0-draft   # 或 2.0
-source: ai-distilled # 或 user-analyzed
+version: 1.0-draft   # 或 2.0-distilled
+source: ai-distilled # 或 user-distilled-quick / user-distilled-deep
 ```
 
 UI 上(`library list` / `info`)对 `1.0-draft` 加 ⚠️ 标注,提示用户"这是初版,精度待验证"。
@@ -502,7 +502,7 @@ type: form                          # soul / form / playbook
 name: wangxiaobo
 display_name: 王小波
 version: 1.0
-source: built-in                    # built-in / user-analyzed
+source: built-in                    # built-in / ai-distilled / user-distilled-quick / user-distilled-deep
 compat_soul:    [思辨派, 反讽派, 杂文型]
 incompat_soul:  [陪伴派, 抒情派, 教程派]
 compat_form:    [...]
@@ -719,7 +719,7 @@ status: brainstormed
 |---|---|
 | **多 Soul 完整支持(平台绑定)** | v1 先用单 soul 验证主流程,文件结构预留扩展空间 |
 | `evolve / refresh` 从已发文章反向学习 | 需要用户先有 30+ 篇 ghostink 出的稿子 |
-| 内置库 v2(用户跑 analyze 重构) | v1 先用 AI 提炼初版,v2 跟随实际使用 |
+| 内置库 v2(用户跑 distill --deep 重构) | v1 先用 AI 提炼初版,v2 跟随实际使用 |
 | Form 库扩充(再加 5-10 个作家) | 看用户实际拿哪个用得多 |
 | 协作编辑(团队共用 IP) | 完全独立的子系统,工程量大 |
 | 跨语言能力(英文/日文 form 库) | 当前先攻华语市场 |
@@ -800,7 +800,7 @@ T17, T18, T19 (P4 文档收尾)
 
 ### 12.1 为什么 forge 不暴露,而 init 暴露?
 
-- `init`(改名 analyze)对**别人**做,产物在 library,行为可重复且独立
+- `init`(改名 analyze,本轮再升级为顶级 `/ghostink distill`)对**别人**做,产物在 library,行为可重复且独立
 - `forge` 对**自己**做,只在 setup 流程的中间产生,作为独立命令暴露会让用户疑惑"我已经有 soul 了为什么还要 forge"
 
 ### 12.2 为什么内置三件套而不只是 form?
@@ -858,7 +858,7 @@ T17, T18, T19 (P4 文档收尾)
 ### 12.9 为什么内置库走 v1 → v2 两阶段?
 
 - v1 由 AI 直接产出,目的是**让 setup 流程能跑通**,不卡进度
-- v2 由用户准备 30+ 篇代表作走 `library analyze`,精度上来后替换 v1
+- v2 由用户准备 30+ 篇代表作走 `/ghostink distill`(deep 模式),精度上来后替换 v1
 - 两阶段标注 `version` 字段,UI 上显式区分
 
 ---
@@ -869,7 +869,7 @@ T17, T18, T19 (P4 文档收尾)
 |---|---|---|
 | 1 | 多 Soul v1 是否实现 | **不做**,v2 实现;v1 文件结构预留扩展(`soul.md` 单文件,后续可加 `souls/` 目录) |
 | 2 | identity.md 读者画像 | **细化为标签**,见 5.1 节 Step 1 的三维标签词表 |
-| 3 | library analyze 文章数下限 | **完整模式 20+,quick 模式 5+**,quick 标记为 `version: 1.0-quick` |
+| 3 | distill 文章数下限 | **deep 模式 20+,quick 模式 5+**,quick 标记为 `version: 1.0-quick` |
 | 4 | deai-pass 阈值 | **不设阈值**,只出报告,用户决定改不改 |
 | 5 | examples/ 端到端 demo | **要做**,用猫笔刀全流程跑一篇示例 |
 | 6 | 内置作家库精度 | **v1 由 AI 直接产出**,用户后续提供文章重训 v2 |
@@ -885,7 +885,7 @@ T17, T18, T19 (P4 文档收尾)
 
 | 点 | 当前方案 | 未来可优化 |
 |---|---|---|
-| 词频分析(library analyze 阶段 5) | LLM 估算 | Python 脚本算 n-gram |
+| 词频分析(distill Phase 5) | LLM 估算 | Python 脚本算 n-gram |
 | library 索引 | LLM 读全部 frontmatter | 维护索引文件,加速 list/pick |
 | 平台格式转换(公众号/X thread) | LLM 改写 markdown | 脚本化转换更稳定 |
 | form-check 词表精扫 | LLM 扫描 | grep/正则,精度+速度更高 |

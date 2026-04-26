@@ -174,7 +174,7 @@ Step 2)。
 >
 > - A) 内置整套挂个作家 — Soul + Form + Playbook 全抄一个(推荐新人)
 > - B) 多作家组合 — soul / form / playbook 分别从不同作家选
-> - C) 自拆参考 — 有想拆的作者,先跑 library distill 拆完再回来
+> - C) 自拆参考 — 有想拆的作者,先跑 distill 拆完再回来
 > - D) 纯对话生成 — 不模仿任何人,对话式拆解自己
 
 ### 分支 A:内置整套
@@ -214,7 +214,7 @@ Step 2)。
 
 ### 分支 C:自拆参考
 
-切到 `commands/library.md` 的 `distill` 子命令流程:
+切到 `commands/distill.md` 流程:
 
 > 你想拆谁?需要准备 5+(quick)或 20+(完整)篇代表作。
 
