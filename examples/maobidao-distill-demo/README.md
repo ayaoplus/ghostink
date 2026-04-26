@@ -37,11 +37,14 @@ ghostink 的核心提炼引擎 `distill` 怎么从一位真实作者的历史文
 
 ## 输出
 
-### 内置库三件套(覆盖 1.0-draft → 升 2.0-distilled)
+### 最终三件套(canonical 在 built-in/library/,本目录 output/ 是展示副本)
 
-- `built-in/library/souls/maobidao.md`
-- `built-in/library/forms/maobidao.md`
-- `built-in/library/playbooks/maobidao.md`
+- [`output/`](./output/) — distill 流程产出的最终三件套副本 + 关键摘要 README
+  - [`output/soul.md`](./output/soul.md)
+  - [`output/form.md`](./output/form.md)
+  - [`output/playbook.md`](./output/playbook.md)
+  - [`output/README.md`](./output/README.md) — 关键摘要 + 跟 built-in/ 关系说明
+- canonical(以这里为准):`built-in/library/{souls,forms,playbooks}/maobidao.md`
 
 ### Distill 流程日志(7 个 phase)
 
@@ -59,10 +62,13 @@ ghostink 的核心提炼引擎 `distill` 怎么从一位真实作者的历史文
 
 | Demo | 角度 | 内容 |
 |---|---|---|
-| **maobidao-distill-demo**(本 demo) | "怎么造的" | distill 7 phase 流程 + 真实 35 篇样本 |
+| **maobidao-distill-demo**(本 demo) | "怎么造的" | distill 7 phase 流程 + 真实 35 篇样本 + 最终产物 in `output/` |
 | **maobidao-demo** | "怎么用" | 用本 demo 产出的 2.0-distilled 三件套写一篇 demo 文章 |
 
 两个 demo 互补——distill 是"造工具",write 是"用工具"。
+
+**三件套的最终 canonical 版本** 在 `built-in/library/{souls,forms,playbooks}/maobidao.md`,
+两个 demo 各自的副本(distill-demo/output/ 和 maobidao-demo/studio/)都是镜像。
 
 ## 关键产物 highlights
 
