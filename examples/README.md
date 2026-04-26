@@ -41,5 +41,5 @@ write 真实对话长什么样。
 
 | Demo | 三件套版本 | 完成度 |
 |---|---|---|
-| maobidao-distill-demo | 2.0-distilled(本 demo 直接产出) | ✓ 完整 7 phase |
-| maobidao-demo | studio/ 已同步 2.0-distilled | studio ✓ / transcript + drafts 还基于 1.0-draft 写,待重跑 |
+| maobidao-distill-demo | 2.0-distilled(本 demo 直接产出) | ✓ 完整 7 phase + Phase 3 外部 predict-compare |
+| maobidao-demo | 2.0-distilled(全部内容已重写) | ✓ transcript / drafts / notes / README 全部对齐新 spec |

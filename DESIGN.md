@@ -550,142 +550,231 @@ description: |
 
 ---
 
-## 9. 数据 Schema
+## 9. 数据 Schema(v2.0,2026-04-26 更新)
 
-### 9.1 soul.md 结构
+> 本节描述当前 templates/ 和 built-in/library/ 实际采用的 v2.0 schema。
+> v2.0 在 v1.0 基础上加入:Soul 的 Uniqueness Statement、Form 的 14 节
+> (含 Reader Cognitive Model / Paragraph Rhythm / Address / Analogy /
+> Context Projection / Punctuation 等新维度)、Playbook 的 frequency% /
+> Core Characteristics / Cross-Play Prohibitions / Self-Check。
+>
+> **identity-first 硬约束**:Form / Playbook 每节末尾必须 `[traces to: Soul 0.X]`,
+> trace 不回的删。
+>
+> 完整模板见 `templates/{soul,form,playbook}.template.md`,真实样本见
+> `built-in/library/{souls,forms,playbooks}/maobidao.md`(2.0-distilled)。
+
+### 9.1 soul.md 结构(v2.0)
 
 ```yaml
 ---
 type: soul
 name: maobidao
-version: 1.0
-source: built-in
-compat_form:    [口语化, 短句轰炸]
-compat_playbook: [日报型, 热点评论型]
-incompat_form:  [书面化, 长句分析]
-factions:       [陪伴派, 务实派]
-description: 一个有钱人的陪伴式财经写作
+display_name: 猫笔刀
+version: 2.0-distilled                 # 1.0-draft / 1.0-quick / 2.0-distilled
+source: user-distilled-deep            # built-in / ai-distilled / user-distilled-quick / user-distilled-deep
+factions: [陪伴派, 思辨派]              # 1-3 个 Soul 派系
+compat_form: [口语化, 短句轰炸, 反讽]
+compat_playbook: [日报型, 热点评论型, 主题叙事型]
+incompat_form: [书面化, 长句分析, 抒情]
+incompat_playbook: [教程型]
+description: |
+  晚饭后蹲在小区跟你抽烟聊塘水的财经老兄弟
 ---
 
 # Soul: 猫笔刀
 
+## Uniqueness Statement                ← v2.0 新增,全文导航灯
+> 1-3 句锁差异化(强制反例对照"他不像 X 那样做 Y,他做 Z")
+
 ## 0.1 Reader Value
 - 核心价值主张
-- 价值类型表
+- 价值类型表(含信任来源 + 文中证据 [#编号 §段])
 - 取关测试
 
 ## 0.2 Positioning
 - 角色 / 权力关系 / 人设悖论 / 自我定位信号
+- 权威管理方式 ← v2.0 新增独立子节
 
 ## 0.3 Narrative Engine
 - 说服栈排序
 - 论断模式
 - 错误处理
 - 故事的角色
+- 论证最小单元 ← v2.0 新增
 
 ## 0.4 Core Beliefs
-- 信念 1 + 表现
-- 信念 2 + 表现
-- ...
-- 冲突时谁赢
-- 盲区
+- 信念 1-7 + 表现 + 证据 [#编号 §段]
+- 信念之间冲突时的优先级链 ← v2.0 强化(具体优先级,不是抽象排序)
+- 盲区(作者自己点出过的)
 
 ## 0.5 Trust Mechanics
-- 行为表
-- 脆弱模式
-- 破信任的红线
+- 行为表 + 频率 + 文中证据
+- 脆弱部署(频率 + 触发场景 + 强势话题)
+- 会瞬间摧毁信任的事(红线)
 
 ## 0.6 Emotional Contract
-- 读者来求什么
-- 永不做什么
-- 情感锚点角色
-- 情感范围
+- 读者打开文章时期待的体验
+- 作者绝不做的事(情感界限)
+- 情感锚点角色(情境-角色对)
+- 情感光谱与限制(可分常态 / 自传 / 年终 / 极端日多模式) ← v2.0 强化
 ```
 
-### 9.2 form.md 结构
+### 9.2 form.md 结构(v2.0,14 节)
 
 ```yaml
 ---
 type: form
-name: wangxiaobo
-version: 1.0
-source: built-in
-compat_soul:    [思辨派, 反讽派]
-compat_playbook: [杂文型, 长论型]
-factions:       [反讽, 长句分析]
-description: 王小波的反讽 + 理性文笔
+name: maobidao
+display_name: 猫笔刀
+version: 2.0-distilled
+source: user-distilled-deep
+factions: [口语化, 短句轰炸, 反讽]      # Form 派系
+compat_soul: [陪伴派, 思辨派]
+compat_playbook: [日报型, 热点评论型, 主题叙事型]
+incompat_soul: [书面化, 长句分析]
+description: |
+  口语化短句 + 财经术语精确 + 冷讽 2 级 + "……"段间转身
 ---
 
-# Form: 王小波
+# Form: 猫笔刀
 
-## Persona Voice
-- 写作人格 1-2 句
-- 核心张力
-- 脆弱维度
+## 1. Persona Voice
+- 写作人格 / 核心张力 / 脆弱维度
+[traces to: Soul 0.X]
 
-## Sentence Rhythm
-- 短句比例
-- 节奏型
-- 长句容忍度
+## 2. Reader Cognitive Model           ← v2.0 新增
+- 默认读者智商假设
+- 已知 / 未知边界表
+- 论证强度档位
+- 解释深度模式(白话翻译 / 类比 / 拆解)
+[traces to: Soul 0.X]
 
-## Vocabulary Fingerprint
-### Must Use (口语化倾向)
-| word | usage | freq |
-### Never Use (书面化禁用)
-| word |
-### Forbidden (绝对 0 次)
-- ...
+## 3. Sentence Rhythm
+- 句长统计(短%/中%/长% + 平均字数)
+- 节奏型 + 节奏破坏点
+[traces to: Soul 0.X]
 
-## Opening Patterns
-| 类型 | 频率 | 示例 |
+## 4. Paragraph Rhythm                 ← v2.0 新增,独立于句子节奏
+- 段长分布(短/中/长%)
+- 段间转折手法表
+- 段间留白逻辑 + 视觉密度
+[traces to: Soul 0.X]
 
-## Closing Patterns
-| 类型 | 适用类型 | 示例 |
+## 5. Vocabulary Fingerprint
+### Must Use (≥10 条)
+### Often Use (≥10 条)               ← v2.0 新增中间层
+### Never Use (≥15 条 — 替代方案)
+### Forbidden (≥10 条 — 0 出现)
+[traces to: Soul 0.X]
 
-## Prohibition List
-- 排比 / 总结段 / 教化 / ...
+## 6. Address Conventions              ← v2.0 新增
+- 自称 / 称读者 / 称他人 / 禁用称谓
+[traces to: Soul 0.X]
 
-## Emotional Expression Toolkit
-| 情绪 | 表达手法 | 例句 |
+## 7. Analogy Style                    ← v2.0 新增
+- 类比库来源(含真人真事来源)
+- 好类比标准 + 类比密度 + 禁用类比模式
+[traces to: Soul 0.X]
 
-## Signature Expressions
-| 招牌表达 | 使用场景 | 频率 |
+## 8. Context Projection               ← v2.0 新增
+- 参考系 / 援引来源
+- 讽刺锐度等级(0/1/2/3/3.5/4 级体系)
+- 信息密度模式(一次走 vs 重复加深 vs 螺旋上升)
+- 新观点 / 老观点的引入差异
+[traces to: Soul 0.X]
+
+## 9. Opening Patterns (≥4 种 + 频率% + 禁用开头)
+[traces to: Soul 0.X]
+
+## 10. Closing Patterns (≥3 种 + 频率% + 禁用结尾)
+[traces to: Soul 0.X]
+
+## 11. Emotional Expression Toolkit
+- 7 种情绪表达手法 + 克制系数 + 触发后处理
+[traces to: Soul 0.X]
+
+## 12. Signature Expressions
+- ≥8 条招牌 + ≥1 自创词
+- 夸张式修辞(可选,标志性时加)
+[traces to: Soul 0.X]
+
+## 13. Punctuation & Layout            ← v2.0 新增
+- 标点偏好表 + 排版习惯 + 视觉风格
+[traces to: Soul 0.X]
+
+## 14. Prohibition List
+- ≥10 条总禁忌 + 每条 trace 回 Soul 哪节
 ```
 
-### 9.3 playbook.md 结构
+### 9.3 playbook.md 结构(v2.0)
 
 ```yaml
 ---
 type: playbook
 name: maobidao
-version: 1.0
-source: built-in
-plays: [日报型, 热点评论型, 主题叙事型]
-description: 猫笔刀常用三种打法
+display_name: 猫笔刀
+version: 2.0-distilled
+source: user-distilled-deep
+plays: [日报型, 周末闲聊型, 极端日报型, 主题深挖型, 自传年终复盘型, 短公告型, 热点评论型]
+description: |
+  猫笔刀的 7 种打法,frequency 加起来 ≈100%
 ---
 
 # Playbook: 猫笔刀
 
-## Play: 日报型
+> 顶部说明:Play 是分类指引,不是硬隔离。实际写作中多种 Play 经常混合
+> (自传开场 + 日报中段)。判断 Play 类型看主导。 ← v2.0 新增说明
 
-trigger:        工作日例行,当天有大盘行情
-serves_value:   [信息差, 情感陪伴]
-emotional_baseline: 日常陪伴,克制
-length:         800-1500
-material_from:  [当日新闻, 即时反应]
+## Play: 日报型(核心)
 
-structure:
-  1. 开头:扫一眼今天主要事件(2-3 件)
-  2. 主体:对每件给一句态度 + 短解释
-  3. 收尾:一句感慨 / 给到明天的话
-opening_patterns: [新闻扫读, 数据开场]
-closing_patterns: [日常感慨, 明日预告]
+- frequency: ~50%                      ← v2.0 新增字段
+- trigger: 工作日例行
+- serves_value: [信息差, 决策辅助, 认知校准, 情感陪伴]
+- emotional_baseline: 冷静日常 + 偶尔冷讽
+- length: 1500-2500 字
+- material_from: [当日新闻, 政策, 行业内幕]
+- publish_cadence: 每工作日 22:00      ← v2.0 新增字段
 
-## Play: 热点评论型
+### Structure
+1. 开头:砸数据 + 总判断
+2. 主体:大事件深聊(2-4 段)
+3. "……" 转身
+4. 多条新闻速串(数字编号 1-7)
+5. 收尾:"就这些了"
+
+### Core Characteristics (4-6 条)       ← v2.0 新增,灵魂识别码
+1. 信息密度高 + 节奏轻快
+2. 不是转述新闻,是"翻译 + 判断"
+3. 行业内幕穿插
+4. 允许穿插个人生活碎片
+5. "……"是关键段间符
+6. 粤语词 / 网络词高频
+
+### Opening Patterns
+[直接砸数据 / 行情, 引读者评论, 直接抛事实 / 八卦, 国际新闻开篇]
+
+### Closing Patterns
+[就这些了, 字数 meta 收尾, 反讽收尾, 明日预告]
+
+### Anti-Patterns                       ← v2.0 新增,本 Play 局部禁忌
+- 不写励志式收尾(励志是自传 / 年终专属)
+- 不写诗化段落
+- 不超 3000 字
+- 不超 1 个核心议题占 ≥50% 篇幅
+
+[traces to: Soul 0.1, 0.2, 0.3, 0.6]   ← v2.0 强制 trace
+
+## Play: <其他 6 种 Play 同结构>
 ...
 
-## Play: 主题叙事型
-...
+---
+
+## Cross-Play Prohibitions               ← v2.0 新增,跨所有 Play 红线
+1-N 条总禁忌 + 每条 trace 回 Soul
+
+## Self-Check Checklist                  ← v2.0 新增,写完文章发布前自检
+- [ ] N 条 yes/no 问题,可立即判断
 ```
 
 ### 9.4 profile/ 结构
